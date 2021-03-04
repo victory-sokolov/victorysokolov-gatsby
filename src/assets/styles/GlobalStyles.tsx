@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 2rem;
     padding:0;
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
   }
 
   fieldset {
