@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     --white: #fff;
     --grey: #efefef;
   }
+
   html {
     background-attachment: fixed;
     font-size: 10px;
@@ -18,6 +19,9 @@ const GlobalStyles = createGlobalStyle`
     padding:0;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   fieldset {
@@ -87,10 +91,18 @@ const GlobalStyles = createGlobalStyle`
     display: inline-block;
   }
 
-  section {
-    padding: 0 100px 0 100px;
-  }
-
 `;
 
-export default GlobalStyles;
+const ContainerStyle = styled.div`
+  max-width: 1110px;
+  width: 100%;
+  padding-left: 35px;
+  padding-right: 35px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export {
+  GlobalStyles,
+  ContainerStyle
+};
