@@ -1,75 +1,189 @@
-import React from "react";
 import { Link } from 'gatsby';
+import React from 'react';
 import styled from 'styled-components';
-import { FaMoon } from "react-icons/fa";
-import "normalize.css"
 
-const HeaderStyles = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #012C35;
-  padding: 30px 10%;
+const NavStyles = styled.nav`
+  z-index: 1;
 
-  .wave {
-    position: absolute;
-    top: 125px;
-    left: 0;
-    transform: rotate(180deg);
-    fill: #012C35;
-    width: 100%;
-  }
-
-  li {
+  .menu li  {
     display: inline-block;
     padding: 0 20px;
+
+    a {
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 2.2px;
+      color: #fff;
+    }
   }
 
-  a {
-    color: #fff;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    transition: all 0.3s ease 0s;
+  .toggler {
+    opacity: 0;
   }
 
-  .color-mode {
-    z-index:10;
-    fill: white;
+  @media (max-width: 768px) {
+
+    .toggler {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+
+      &:checked + .hamburger > div:before,
+      &:checked + .hamburger > div:after {
+          top: 0;
+          transform: rotate(90deg);
+      }
+
+      &:checked + .hamburger > div {
+        transform: rotate(135deg);
+      }
+
+      &:checked:hover + .hamburger > div {
+        transform: rotate(225deg);
+      }
+
+      &:checked ~ .menu {
+        visibility: visible;
+      }
+
+      &:checked ~ .menu > div {
+        transform: scale(1);
+        transition-duration: 0.75s;
+      }
+
+      &:checked ~ .menu > div > div {
+        opacity: 1;
+        transition:  opacity 0.4s ease 0.4s;
+      }
+
+    }
+
+    .hamburger {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      width: 35px;
+      height: 35px;
+      padding: 1rem;
+      background: rgba(13, 110, 139, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      div {
+        position: relative;
+        flex: none;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          z-index: 1;
+          top: -10px;
+          width: 100%;
+          height: 2px;
+          background: inherit;
+        }
+
+        &:after {
+          top: 10px;
+        }
+      }
+    }
+
+    .menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & > div {
+      background: rgba(24, 39, 51 , 0.85);
+      border-radius: 50%;
+      width: 200vw;
+      height: 200vw;
+      display: flex;
+      flex: none;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: all 0.4s ease;
+      }
+
+    & > div > div {
+      text-align: center;
+      max-width: 90vw;
+      max-height: 100vh;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    &> div > div > ul > li {
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 1rem;
+      text-align: center;
+      line-height: 40px;
+      display: block;
+    }
+
+    & > div > div > ul > li > a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.4s ease;
+      font-size: 18px;
+    }
   }
+}
 `;
 
 
-const Nav = () => {
+export default function Nav() {
 
     return (
-      <HeaderStyles>
-        <svg preserveAspectRatio="none" className="wave" height="74" viewBox="0 0 1440 74"><path d="M456.464 0.0433865C277.158 -1.70575 0 50.0141 0 50.0141V74H1440V50.0141C1440 50.0141 1320.4 31.1925 1243.09 27.0276C1099.33 19.2816 1019.08 53.1981 875.138 50.0141C710.527 46.3727 621.108 1.64949 456.464 0.0433865Z"></path></svg>
-        <h1>
-          <a href="/">Viktor Sokolov</a>
-        </h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/about">Snippets</Link>
-            </li>
-          </ul>
-        </nav>
+        <NavStyles>
 
-        <a href="#" >
-          <FaMoon className="color-mode" />
-        </a>
+          <input type="checkbox" className="toggler"/>
 
+          <div className="hamburger">
+            <div></div>
+          </div>
 
-      </HeaderStyles>
-
+          <div className="menu">
+            <div>
+              <div>
+                <ul>
+                  <li>
+                    <Link to="/blog">Blog</Link>
+                  </li>
+                  <li>
+                    <Link to="/about">About</Link>
+                  </li>
+                  <li>
+                    <Link to="/about">Snippets</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </NavStyles>
     )
 }
-
-export default Nav
