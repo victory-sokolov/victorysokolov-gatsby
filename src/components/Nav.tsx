@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const NavStyles = styled.nav`
   z-index: 1;
+  padding-bottom: 12px;
 
   .menu li  {
     display: inline-block;
@@ -70,7 +71,7 @@ const NavStyles = styled.nav`
       width: 35px;
       height: 35px;
       padding: 1rem;
-      background: rgba(13, 110, 139, 0.75);
+      background: rgba(13, 110, 139, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -115,6 +116,10 @@ const NavStyles = styled.nav`
       align-items: center;
       justify-content: center;
 
+      ul {
+        padding: 0;
+      }
+
       & > div {
       background: rgba(24, 39, 51 , 0.85);
       border-radius: 50%;
@@ -136,7 +141,7 @@ const NavStyles = styled.nav`
       transition: opacity 0.4s ease;
     }
 
-    &> div > div > ul > li {
+    &  > div > div > ul > li {
       color: #fff;
       font-size: 1.5rem;
       padding: 1rem;
