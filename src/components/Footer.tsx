@@ -5,8 +5,7 @@ import { ContainerStyle } from '../assets/styles/GlobalStyles';
 
 const FooterStyles = styled.footer`
     display: flex;
-    /* height: 160px; */
-    background-color: #012C35;
+    background: var(--primary-gradient);
     color: #fff;
     text-align: center;
 
@@ -16,7 +15,7 @@ const FooterStyles = styled.footer`
             letter-spacing: 1.2px;
         }
         p {
-            font-size: 14px;
+            font-size: 1.2rem;
         }
         ul {
             position: relative;
@@ -28,16 +27,14 @@ const FooterStyles = styled.footer`
 export default function Footer() {
 
     return (
-
-            <FooterStyles>
-                <ContainerStyle>
-                <div className="footer-content">
-                    <h6>ViktorSokolov.dev</h6>
-                     <SocialMedia color="white"/>
-                    <p>&copy; 2020. All Rights Reserved</p>
-                </div>
-                </ContainerStyle>
-            </FooterStyles>
-
+        <FooterStyles>
+            <ContainerStyle>
+            <div className="footer-content">
+                <h6>ViktorSokolov.dev</h6>
+                    <SocialMedia color="white"/>
+                <p>&copy; 2020. All Rights Reserved</p>
+            </div>
+            </ContainerStyle>
+        </FooterStyles>
     )
 }
