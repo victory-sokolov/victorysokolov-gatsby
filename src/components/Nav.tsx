@@ -2,21 +2,46 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
+
 const NavStyles = styled.nav`
   z-index: 1;
   padding-bottom: 12px;
+  margin-left: 25px;
 
   .menu li  {
     display: inline-block;
-    padding: 0 20px;
+  }
 
-    a {
-      font-size: 1.6rem;
-      font-weight: 300;
-      letter-spacing: 2.2px;
+  a {
+    font-size: 1.4rem;
+    letter-spacing: 2.2px;
+    padding: 10px 0;
+    margin: 0 20px;
+    color: #ddd;
+    position: relative;
+    text-shadow: none;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      padding: 10px 0;
+      max-width: 0;
+      border-bottom: 2px solid #fff;
       color: #fff;
+      content: attr(data-hover);
+      transition: max-width 0.5s;
+    }
+
+    &:hover {
+
+      &:before {
+        max-width: 100%;
+      }
     }
   }
+
 
   .toggler {
     opacity: 0;
@@ -52,6 +77,7 @@ const NavStyles = styled.nav`
       }
 
       &:checked ~ .menu > div {
+        border-radius: 0;
         transform: scale(1);
         transition-duration: 0.75s;
       }
@@ -71,7 +97,7 @@ const NavStyles = styled.nav`
       width: 35px;
       height: 35px;
       padding: 1rem;
-      background: rgba(13, 110, 139, 0.85);
+      background: linear-gradient(90deg, rgba(53,96,197,1) 0%, rgba(98,22,216,1) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -121,16 +147,16 @@ const NavStyles = styled.nav`
       }
 
       & > div {
-      background: rgba(24, 39, 51 , 0.85);
-      border-radius: 50%;
-      width: 200vw;
-      height: 200vw;
-      display: flex;
-      flex: none;
-      align-items: center;
-      justify-content: center;
-      transform: scale(0);
-      transition: all 0.4s ease;
+        background: rgba(24, 39, 51 , 0.85);
+        border-radius: 50%;
+        width: 200vw;
+        height: 200vw;
+        display: flex;
+        flex: none;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0);
+        transition: all 0.4s ease;
       }
 
     & > div > div {
@@ -151,10 +177,10 @@ const NavStyles = styled.nav`
     }
 
     & > div > div > ul > li > a {
-      color: inherit;
       text-decoration: none;
       transition: color 0.4s ease;
-      font-size: 18px;
+      font-size: 1.8rem;
+      padding: 20px 0;
     }
   }
 }
@@ -177,13 +203,13 @@ export default function Nav() {
               <div>
                 <ul>
                   <li>
-                    <Link to="/blog">Blog</Link>
+                    <Link data-hover="Blog" to="/blog">Blog</Link>
                   </li>
                   <li>
-                    <Link to="/about">About</Link>
+                    <Link data-hover="About" to="/about">About</Link>
                   </li>
                   <li>
-                    <Link to="/about">Snippets</Link>
+                    <Link data-hover="Snippets" to="/about">Snippets</Link>
                   </li>
                 </ul>
               </div>

@@ -1,27 +1,37 @@
 import React from "react";
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import "normalize.css"
 import Nav from './Nav';
 import { ContainerStyle } from '../assets/styles/GlobalStyles';
+import Hero from './Hero';
 
 const HeaderStyles = styled.header`
-    background: #012C35;
-    height: 140px;
+  background: var(--primary-gradient);
+  min-height: 260px;
+  position: relative;
 
   .heading-content {
-      display: flex;
-      align-items: center;
-      padding-top: 25px;
+    display: flex;
+    align-items: center;
+    padding-top: 25px;
+  }
+
+  .wave,
+  .wave-bottom {
+    position: absolute;
+    left: 0;
+    bottom:0;
+    width: 100%;
+  }
+
+  .wave-bottom {
+    fill: #dcdcdc;
   }
 
   .wave {
-    position: absolute;
-    top: 140px;
-    left: 0;
-    transform: rotate(180deg);
-    fill: #012C35;
-    width: 100%;
+    bottom:-6px;
+    fill: #fff;
   }
 
   h1 {
@@ -56,10 +66,10 @@ const HeaderStyles = styled.header`
 export default function Header() {
 
     return (
-
       <HeaderStyles>
         <ContainerStyle>
           <div className="heading-content">
+            <svg preserveAspectRatio="none" className="wave-bottom" height="74" viewBox="0 0 1440 74"><path d="M456.464 0.0433865C277.158 -1.70575 0 50.0141 0 50.0141V74H1440V50.0141C1440 50.0141 1320.4 31.1925 1243.09 27.0276C1099.33 19.2816 1019.08 53.1981 875.138 50.0141C710.527 46.3727 621.108 1.64949 456.464 0.0433865Z"></path></svg>
             <svg preserveAspectRatio="none" className="wave" height="74" viewBox="0 0 1440 74"><path d="M456.464 0.0433865C277.158 -1.70575 0 50.0141 0 50.0141V74H1440V50.0141C1440 50.0141 1320.4 31.1925 1243.09 27.0276C1099.33 19.2816 1019.08 53.1981 875.138 50.0141C710.527 46.3727 621.108 1.64949 456.464 0.0433865Z"></path></svg>
             <h1>
               <Link to="/">
@@ -68,6 +78,7 @@ export default function Header() {
             </h1>
             <Nav />
           </div>
+          <Hero />
         </ContainerStyle>
       </HeaderStyles>
 
