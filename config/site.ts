@@ -19,6 +19,7 @@ module.exports = {
     twitterHandle: '@victorysokolov',
     github: 'https://github.com/victory-sokolov',
     linkedin: 'https://www.linkedin.com/in/sokolov-viktor',
+    instagram: '',
     youtube: '',
     rss: '',
 }
