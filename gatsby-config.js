@@ -1,12 +1,22 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
+const config =  require('./config/site.ts');
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: config.title,
+    author: config.author,
+    description: config.description,
+    siteUrl: process.env.ROOT_URL,
+    keywords: ["Software Engineer", "Sass business", "Web development"],
+  },
+
   plugins: [
+    {
+      resolve: `gatsby-plugin-react-helmet`,
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -53,7 +63,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts-v2`,
       options: {
         fonts: [
           {
