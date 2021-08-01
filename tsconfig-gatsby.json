@@ -14,7 +14,8 @@
         "./node_modules",
         "./public",
         "./.cache",
-        "./src/**/*"
+        "./src/**/*",
+        "./config/**"
     ],
     "include": [
         "./gatsby-node.ts",
