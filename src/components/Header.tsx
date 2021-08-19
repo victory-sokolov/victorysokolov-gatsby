@@ -1,4 +1,4 @@
-import { globalHistory } from '@reach/router';
+import { globalHistory } from "@reach/router";
 import { Link } from "gatsby";
 import "normalize.css";
 import React, { useEffect, useState } from "react";
@@ -6,9 +6,11 @@ import styled from "styled-components";
 import { ContainerStyle } from "../assets/styles/GlobalStyles";
 import Hero from "./Hero";
 import Nav from "./Nav";
+import { Toggle } from './Toggle';
 
 const HeaderStyles = styled.header`
-  background: var(--primary-gradient);
+  /* background: var(--primary-gradient); */
+  background: ${props => props.theme.t.colorSchema.primary};
   min-height: 250px;
   position: relative;
 
@@ -32,7 +34,8 @@ const HeaderStyles = styled.header`
 
   .wave {
     bottom: -6px;
-    fill: #fff;
+    transition: all 0.5s linear;
+    fill: ${props => props.theme.t.colorSchema.background};
   }
 
   h1 {
@@ -62,22 +65,23 @@ const HeaderStyles = styled.header`
     fill: white;
   }
 
-  @media ${props => props.theme.breakpoints.mobile} {
+  @media ${props => props.theme.t.breakpoints.mobile} {
     min-height: 185px;
   }
 `
 
 export function Header() {
-  const [isRootUrl, setIsRootUrl] = useState(((location.pathname === '/') ? true : false));
+  const [isRootUrl, setIsRootUrl] = useState(
+    location.pathname === "/" ? true : false
+  )
 
   useEffect(() => {
     return globalHistory.listen(({ action }) => {
-      if (action === 'PUSH') {
-        setIsRootUrl((location.pathname === '/') ? true : false);
+      if (action === "PUSH") {
+        setIsRootUrl(location.pathname === "/" ? true : false)
       }
     })
   }, [])
-
 
   return (
     <HeaderStyles>
@@ -103,8 +107,9 @@ export function Header() {
             <Link to="/">Viktor Sokolov</Link>
           </h1>
           <Nav />
+          <Toggle />
         </div>
-        {isRootUrl && <Hero /> }
+        {isRootUrl && <Hero />}
       </ContainerStyle>
     </HeaderStyles>
   )
