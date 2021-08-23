@@ -1,31 +1,44 @@
-import { graphql } from "gatsby"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import React from "react"
-import styled from "styled-components"
-import { FeatureImage } from "../components/FeatureImage"
-import { PostMetaInfo } from "../components/PostMetaInfo"
+import { graphql } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import React from "react";
+import styled from "styled-components";
+import Categories from '../components/Categories';
+import Comments from '../components/Comments';
+import { FeatureImage } from "../components/FeatureImage";
+import { PostMetaInfo } from "../components/PostMetaInfo";
+import {useReadTime} from "../hooks/useReadTime";
+
+const BlogWrapper = styled.div`
+  max-width: 950px;
+`
 
 const ContentWrapper = styled.article`
-  background-color: #fff;
-  padding: 25px;
-  max-width: 950px;
-  position: relative;
-  bottom: 100px;
   margin: 0 auto;
-  box-shadow: var(--light-shadow);
-  border-radius: 5px;
+  padding-bottom: 50px;
 
   h1 {
-    /* text-align: center; */
     padding: 25px 0 15px;
-    line-height: 2em;
+    line-height: 3rem;
   }
 
   p {
     line-height: 2.2em;
   }
 
-  @media ${props => props.theme.breakpoints.mobile} {
+  code {
+    font-family: "Roboto Mono, monospace";
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    color: #fff;
+    background-color: ${props => props.theme.t.colors.dark3};
+    padding: 0 0.3rem;
+  }
+
+  pre {
+    font-size: 1.6rem;
+  }
+
+  @media ${props => props.theme.t.breakpoints.mobile} {
     padding: 0;
     background: none;
     box-shadow: none;
@@ -39,17 +52,21 @@ const singlePost = ({ data }) => {
   const featureImage =
     data.mdx.frontmatter.featureImage.childImageSharp.gatsbyImageData
   const date = data.mdx.frontmatter.date
-  const readTime = data.mdx.fields.readingTime.text
+  const article = data.mdx.body;
+  const readTime = useReadTime(article);
+  const tags = data.mdx.frontmatter.tags.split(",");
 
   return (
-    <>
+    <BlogWrapper>
       <FeatureImage image={featureImage} styles={{ height: "50vh" }} />
       <ContentWrapper>
         <h1>{data.mdx.frontmatter.title}</h1>
         <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
+        <Categories categories={tags} />
+        <MDXRenderer>{article}</MDXRenderer>
       </ContentWrapper>
-    </>
+      <Comments />
+    </BlogWrapper>
   )
 }
 
@@ -63,15 +80,11 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         slug
+        tags
         featureImage {
           childImageSharp {
             gatsbyImageData(width: 1100, placeholder: BLURRED)
           }
-        }
-      }
-      fields {
-        readingTime {
-          text
         }
       }
     }

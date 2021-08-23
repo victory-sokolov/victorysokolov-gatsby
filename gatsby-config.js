@@ -9,7 +9,7 @@ module.exports = {
     author: "Viktor Sokolov",
     description: "Blog about Software Enginnering",
     siteUrl: process.env.ROOT_URL,
-    keywords: ["Software Engineer", "Sass business", "Web development"],
+    keywords: ["Software Engineering", "Sass business", "Web development"],
   },
 
   plugins: [
@@ -78,7 +78,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-image`,
-    `gatsby-remark-reading-time`,
     {
       resolve: `gatsby-plugin-google-fonts-v2`,
       options: {
