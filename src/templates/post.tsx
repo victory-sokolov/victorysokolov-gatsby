@@ -55,7 +55,6 @@ const singlePost = ({ data }) => {
   const article = data.mdx.body;
   const readTime = useReadTime(article);
   const tags = data.mdx.frontmatter.tags.split(",");
-
   return (
     <BlogWrapper>
       <FeatureImage image={featureImage} styles={{ height: "50vh" }} />
