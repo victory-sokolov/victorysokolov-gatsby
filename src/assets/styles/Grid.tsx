@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Grid = styled.div<{ cols: string; rows?: string, gap?: string }>`
+export const Grid = styled.div<{ cols: string; rows?: string; gap?: string }>`
   display: grid;
   grid-template-columns: ${props => props.cols};
   grid-template-rows: ${props => props.rows};
@@ -10,7 +10,7 @@ export const Grid = styled.div<{ cols: string; rows?: string, gap?: string }>`
   align-content: center;
 
   /* Mobile */
-  @media ${props => props.theme.breakpoints.mobile} {
+  @media ${({theme}) => theme.t.breakpoints.mobile} {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
   }
