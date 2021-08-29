@@ -118,7 +118,6 @@ const Link = styled(GatsbyLink)`
 
 const NavStyles = styled.nav`
   z-index: 1;
-  padding-bottom: 12px;
   margin-left: 25px;
 `
 
