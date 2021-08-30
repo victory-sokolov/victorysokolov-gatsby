@@ -3,6 +3,7 @@ export const lightTheme = {
   title: "#222",
   link: "#0d15ec",
   primary: "linear-gradient(347deg, #3b128c 0%, #383caa 100%)",
+  border: "#222",
 }
 
 export const darkTheme = {
@@ -10,6 +11,7 @@ export const darkTheme = {
   title: "#fff",
   link: "#9b87ff",
   primary: "#25005d",
+  border: "#fff",
 }
 
 export const theme = {

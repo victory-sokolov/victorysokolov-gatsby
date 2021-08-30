@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import styled from 'styled-components';
 
 const CommentSection = styled.div`
-
   h2 {
-    border-bottom: 3px solid #222;
+    border-bottom: 3px solid ${props => props.theme.t.colorSchema.border};
     padding-bottom: 8px;
   }
 `
