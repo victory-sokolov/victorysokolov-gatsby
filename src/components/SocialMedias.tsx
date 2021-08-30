@@ -1,38 +1,39 @@
-import React from 'react';
-import { FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
-import styled from 'styled-components';
+import React from "react"
+import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa"
+import styled from "styled-components"
+import site from "../../config/site"
 
-const SocialMediaStyles = styled.div`
+const SocialMedias = styled.div`
+  li {
+    display: inline-block;
+    padding: 0 10px;
+  }
 
-    li {
-        display: inline-block;
-        padding: 0 10px;
-    }
-`;
+  li:hover {
+    filter: brightness(50%);
+  }
+`
 
-export default function SocialMedia({color}: any) {
-
-    return (
-        <SocialMediaStyles>
-            <ul>
-                <li>
-                    <a href="https://twitter.com/VictorySokolov">
-                    <FaTwitter color={color} />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/sokolov-viktor">
-                        <FaLinkedin color={color} />
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <FaInstagram color={color} />
-                    </a>
-                </li>
-            </ul>
-        </SocialMediaStyles>
-
-    )
+export default function SocialMedia({ color }: any) {
+  return (
+    <SocialMedias>
+      <ul>
+        <li>
+          <a href={site.twitter} target="_blank" rel="noopener noreferrer">
+            <FaTwitter color={color} />
+          </a>
+        </li>
+        <li>
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+            <FaLinkedin color={color} />
+          </a>
+        </li>
+        <li>
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+            <FaInstagram color={color} />
+          </a>
+        </li>
+      </ul>
+    </SocialMedias>
+  )
 }
-
