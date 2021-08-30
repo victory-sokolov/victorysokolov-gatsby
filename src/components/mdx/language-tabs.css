@@ -5,12 +5,12 @@
 .gatsby-highlight pre[class*="language-"] {
     -webkit-overflow-scrolling: touch;
     padding: 3.5rem 0.75rem 2rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
 }
 
 .gatsby-highlight pre[class*="language-"]::before {
     background: black;
-    border-radius: 0 0 0.25rem 0.25rem;
+    border-radius: 0 0 0.5rem 0.5rem;
     color: white;
     font-size: 12px;
     letter-spacing: 0.025rem;
