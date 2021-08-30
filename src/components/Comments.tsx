@@ -15,16 +15,12 @@ const Comments = () => {
   useEffect(() => {
 
     const commentScript = document.createElement('script')
-    const theme =
-      typeof window !== 'undefined' && localStorage.getItem('theme') === 'dark'
-        ? 'github-dark'
-        : 'github-light';
     commentScript.async = true;
     commentScript.src = 'https://utteranc.es/client.js';
     commentScript.setAttribute("repo", "victory-sokolov/comments")
     commentScript.setAttribute('issue-term', 'pathname');
     commentScript.setAttribute('id', 'utterances');
-    commentScript.setAttribute('theme', theme);
+    commentScript.setAttribute("theme", "github-light")
     commentScript.setAttribute('crossorigin', 'anonymous');
 
     if (commentBox && commentBox.current) {
