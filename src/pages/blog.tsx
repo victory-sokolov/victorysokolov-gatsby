@@ -1,37 +1,46 @@
-import { graphql } from "gatsby"
-import React from "react"
-import styled from "styled-components"
-import { Grid } from "../assets/styles/Grid"
-import { Pagination } from "../components/Pagination"
-import { PostCard } from "../components/PostCard"
+import { graphql } from "gatsby";
+import { useReadTime } from '../hooks/useReadTime';
+import React from "react";
+import styled from "styled-components";
+import site from "../../config/site";
+import { Grid } from "../assets/styles/Grid";
+import { Pagination } from "../components/Pagination";
+import { PostCard } from "../components/PostCard";
 
 const GridExtended = styled(Grid)`
-  grid-gap: 32px;
-  grid-template-columns: repeat(auto-fit, 320px);
-  margin-top: 40px;
-  padding-bottom: 45px;
+  grid-gap: 55px;
+  grid-template-columns: repeat(auto-fit, 330px);
+  margin-top: 10px;
   justify-content: unset;
 
-  @media ${props => props.theme.breakpoints.mobile} {
+  @media ${props => props.theme.t.breakpoints.mobile} {
     justify-content: center;
   }
-`
+`;
+
+const TopHeadline = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 
 const Blog = ({ pageContext, data }: any) => {
   if (!data) return <p>No Post found!</p>
 
   const { currentPage, numPages } = pageContext
-
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
   const nextPage = `/${currentPage + 1}`
+  const posts = data.allMdx.edges;
 
-  const posts = data.allMdx.edges
-  console.log(posts)
   return (
     <>
-      <h1>Blog Posts ↓</h1>
+      <TopHeadline>
+        <h2>Blog Posts ↓</h2>
+        <h3>{posts.length} Articles</h3>
+      </TopHeadline>
       <GridExtended cols="1fr 1fr 1fr">
         {posts.map(({ node }: any) => (
           <PostCard
@@ -41,50 +50,38 @@ const Blog = ({ pageContext, data }: any) => {
             date={node.frontmatter.date}
             excerpt={node.excerpt}
             image={
-              node.frontmatter.featureImage.childImageSharp.gatsbyImageData
+              node.frontmatter?.featureImage?.childImageSharp?.gatsbyImageData
             }
-            readTime={node.fields.readingTime.text}
+            readTime={useReadTime(node.body)}
           />
         ))}
       </GridExtended>
-      <Pagination
-        isFirst={isFirst}
-        isLast={isLast}
-        prevPage={prevPage}
-        nextPage={nextPage}
-      />
+      {posts.length > site.postsPerPage && (
+        <Pagination
+          isFirst={isFirst}
+          isLast={isLast}
+          prevPage={prevPage}
+          nextPage={nextPage}
+        />
+      )}
     </>
   )
 }
 
 export default Blog
 
-export const pageQuery = graphql`
-  query AllPostsQuery($skip: Int!, $limit: Int!) {
+export const query = graphql`
+  query allPostsQuery($skip: Int!, $limit: Int!) {
     allMdx(
       sort: { fields: frontmatter___date, order: DESC }
+      filter: { fileAbsolutePath: { regex: "//posts//" } }
       skip: $skip
       limit: $limit
     ) {
       edges {
         node {
-          id
-          excerpt(pruneLength: 120)
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            slug
-            title
-            featureImage {
-              childImageSharp {
-                gatsbyImageData(width: 320, placeholder: BLURRED)
-              }
-            }
-          }
-          fields {
-            readingTime {
-              text
-            }
-          }
+          body
+          ...postQuery
         }
       }
     }

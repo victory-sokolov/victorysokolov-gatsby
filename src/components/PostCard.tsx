@@ -1,8 +1,8 @@
-import { Link } from "gatsby"
-import React from "react"
-import styled from "styled-components"
-import { FeatureImage } from "./FeatureImage"
-import { PostMetaInfo } from "./PostMetaInfo"
+import { Link } from "gatsby";
+import React from "react";
+import styled from "styled-components";
+import { FeatureImage } from "./FeatureImage";
+import { PostMetaInfo } from "./PostMetaInfo";
 
 const Card = styled.article`
   display: grid;
@@ -13,7 +13,12 @@ const Card = styled.article`
   line-height: 1.5;
   color: #222;
   position: relative;
-  width: 320px;
+  max-width: 350px;
+  transition: transform .5s;
+  &:hover {
+    box-shadow: var(--hover-shadow);
+    transform: scale3d(1.025, 1.025, 1);
+  }
 
   header {
     justify-content: center;
@@ -38,15 +43,13 @@ export function PostCard({ title, date, slug, excerpt, image, readTime }: any) {
   return (
     <Card>
       <Link to={slug}>
-        <FeatureImage image={image} styles={{ height: "250px" }} />
+        <FeatureImage image={image} styles={{ height: "220px" }} />
+          <header>
+            <h2 className="post-title">{title}</h2>
+            <p className="post-description">{excerpt}</p>
+            <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
+          </header>
       </Link>
-      <header>
-        <Link to={slug}>
-          <h2 className="post-title">{title}</h2>
-        </Link>
-        <p className="post-description">{excerpt}</p>
-        <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
-      </header>
     </Card>
   )
 }

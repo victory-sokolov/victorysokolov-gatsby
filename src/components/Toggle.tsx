@@ -6,10 +6,7 @@ import styled, { ThemeContext } from 'styled-components';
 const ToggleButton = styled.button`
   display: flex;
   justify-content: flex-end;
-  flex: auto;
   cursor: pointer;
-  height: 30px;
-  width: 30px;
   box-shadow: none;
   border: none;
   background-color: ${props => props.theme.titleColor};
