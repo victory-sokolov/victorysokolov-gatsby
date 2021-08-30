@@ -1,14 +1,15 @@
-import React from "react"
-import styled from "styled-components"
-import { ContainerStyle } from "../assets/styles/GlobalStyles"
-import SocialMedia from "./SocialMedias"
+import React from "react";
+import styled from "styled-components";
+import { ContainerStyle } from "../assets/styles/GlobalStyles";
+import SocialMedia from "./SocialMedias";
 
 const FooterStyles = styled.footer`
   display: flex;
-  background: var(--primary-gradient);
+  background: ${props => props.theme.t.colorSchema.primary};
   color: #fff;
   text-align: center;
   font-size: 2rem;
+  margin-top: 60px;
 
   .footer-content {
     a {
