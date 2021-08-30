@@ -40,10 +40,10 @@ const HeaderStyles = styled.header`
 
   h1 {
     a {
-      font-weight: 500;
-      font-size: 22px;
+      font-weight: 600;
       color: white;
       letter-spacing: 1.5px;
+      font-size: 2rem;
 
       &:hover > span:first-child {
         animation: moveTextRight 1s;

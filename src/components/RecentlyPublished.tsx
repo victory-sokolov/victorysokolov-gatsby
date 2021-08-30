@@ -7,19 +7,19 @@ const LatestContentContainer = styled.div`
   a {
     font-size: 1.5rem;
   }
-`;
+
+  [aria-label="Visit blog page"] {
+    font-size: 2rem;
+    position: relative;
+    top: 25px;
+  }
+`
 
 const LatestContentStyle = styled.article`
   max-width: 500px;
   padding-bottom: 30px;
-
+  border-bottom: 2px solid #eee;
   a {
-    color: #222;
-
-    &:hover {
-      color: var(--primary-color);
-    }
-
     svg {
       position: relative;
       top: 3px;
