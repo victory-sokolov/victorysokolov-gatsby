@@ -13,10 +13,10 @@ const components = {
         }
         return <pre { ...preProps } />
     },
-    wrapper: ({ children }) => <>{ children } </>
+    wrapper: ({ children }) => <>{ children }</>
 };
 
-export const wrapPageElement = ({ element, props }) => {
+export const wrapRootElement = ({ element, props }) => {
     return (
         <MDXProvider components= { components } >
         <Layout {...props } >
