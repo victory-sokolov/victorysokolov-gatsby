@@ -2,17 +2,20 @@ import { graphql } from "gatsby"
 
 export const postQuery = graphql`
   fragment postQuery on Mdx {
-    id
-    excerpt(pruneLength: 120)
     frontmatter {
       date(formatString: "MMMM DD, YYYY")
       slug
       title
-      featureImage {
-        childImageSharp {
-          gatsbyImageData(width: 350, placeholder: BLURRED)
-        }
-      }
+      description
+      tags
+      status
+    }
+  }
+`
+export const imageQuery = graphql`
+  fragment imageQuery on File {
+    childImageSharp {
+      gatsbyImageData(width: $width, placeholder: BLURRED)
     }
   }
 `
