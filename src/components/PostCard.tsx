@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { FeatureImage } from "./FeatureImage";
+import { P } from './mdx';
 import { PostMetaInfo } from "./PostMetaInfo";
 
 const Card = styled.article`
@@ -10,10 +11,9 @@ const Card = styled.article`
   box-shadow: var(--light-shadow);
   background: #fff;
   border-radius: 15px;
-  line-height: 1.5;
   color: #222;
   position: relative;
-  max-width: 350px;
+  max-width: 35rem;
   transition: transform .5s;
   &:hover {
     box-shadow: var(--hover-shadow);
@@ -28,13 +28,10 @@ const Card = styled.article`
   .post-title {
     text-align: center;
     color: #4c4c4c;
-    letter-spacing: 1.7px;
-    font-size: 2rem;
+    letter-spacing: 1.5px;
   }
 
   .post-description {
-    font-size: 1.4rem;
-    text-align: justify;
     color: var(--paragraph-color);
   }
 `
@@ -44,11 +41,11 @@ export function PostCard({ title, date, slug, excerpt, image, readTime }: any) {
     <Card>
       <Link to={slug}>
         <FeatureImage image={image} styles={{ height: "220px" }} />
-          <header>
-            <h2 className="post-title">{title}</h2>
-            <p className="post-description">{excerpt}</p>
-            <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
-          </header>
+        <header>
+          <h3 className="post-title">{title}</h3>
+          <P className="post-description">{excerpt}</P>
+          <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
+        </header>
       </Link>
     </Card>
   )
