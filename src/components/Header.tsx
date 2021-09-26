@@ -71,14 +71,13 @@ const HeaderStyles = styled.header`
 `
 
 export function Header() {
-  const [isRootUrl, setIsRootUrl] = useState(
-    location.pathname === "/" ? true : false
-  )
+  const path = globalHistory.location.pathname;
+  const [isRootUrl, setIsRootUrl] = useState(path === "/" ? true : false)
 
   useEffect(() => {
     return globalHistory.listen(({ action }) => {
       if (action === "PUSH") {
-        setIsRootUrl(location.pathname === "/" ? true : false)
+        setIsRootUrl(path === "/" ? true : false)
       }
     })
   }, [])
