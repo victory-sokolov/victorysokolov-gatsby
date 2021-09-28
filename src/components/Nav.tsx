@@ -20,14 +20,14 @@ const CloseIcon = styled.div`
       content: "";
       position: absolute;
       z-index: 1;
-      top: -10px;
+      top: -1rem;
       width: 100%;
       height: 2px;
       background: #fff;
     }
 
     &:after {
-      top: 10px;
+      top: 1rem;
     }
   }
 `
@@ -44,10 +44,6 @@ const Menu = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    ul {
-      padding: 0;
-    }
 
     div {
       background: rgba(63, 81, 189, 0.9);
@@ -78,16 +74,16 @@ const LinkItem = styled.li`
     font-size: 1.5rem;
     padding: 1rem;
     text-align: center;
-    line-height: 40px;
+    line-height: 4rem;
     display: block;
   }
 `
 
 const Link = styled(GatsbyLink)`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   letter-spacing: 2.2px;
-  padding: 13px 0;
-  margin: 0 20px;
+  padding: 1.4rem 0;
+  margin: 0 2rem;
   color: #ddd;
   position: relative;
   &:before {
@@ -95,7 +91,7 @@ const Link = styled(GatsbyLink)`
     top: 0;
     left: 0;
     overflow: hidden;
-    padding: 10px 0;
+    padding: 1rem 0;
     max-width: 0;
     border-bottom: 2px solid #fff;
     color: #fff;
@@ -112,13 +108,13 @@ const Link = styled(GatsbyLink)`
     text-decoration: none;
     transition: color 0.4s ease;
     font-size: 1.8rem;
-    padding: 20px 0;
+    padding: 2rem 0;
   }
 `
 
 const NavStyles = styled.nav`
   z-index: 1;
-  margin-left: 25px;
+  margin-left: 2.5rem;
 `
 
 const Hamburger = styled.div`
@@ -127,8 +123,8 @@ const Hamburger = styled.div`
     top: 0;
     right: 0;
     z-index: 1;
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
     padding: 1rem;
     background: linear-gradient(
       90deg,

@@ -19,17 +19,25 @@ export default function SocialMedia({ color }: any) {
     <SocialMedias>
       <ul>
         <li>
-          <a href={site.twitter} target="_blank" rel="noopener noreferrer">
+          <a
+            href={site.social.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaTwitter color={color} />
           </a>
         </li>
         <li>
-          <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+          <a
+            href={site.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaLinkedin color={color} />
           </a>
         </li>
         <li>
-          <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+          <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">
             <FaInstagram color={color} />
           </a>
         </li>

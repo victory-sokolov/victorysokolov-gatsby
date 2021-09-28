@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ContainerStyle } from "../assets/styles/GlobalStyles";
 import SocialMedia from "./SocialMedias";
+import { Link } from 'gatsby';
 
 const FooterStyles = styled.footer`
   display: flex;
@@ -9,20 +10,19 @@ const FooterStyles = styled.footer`
   color: #fff;
   text-align: center;
   font-size: 2rem;
-  margin-top: 60px;
+  margin-top: 6rem;
 
   .footer-content {
+    padding: 1.6rem;
     a {
       color: #fff;
       text-transform: uppercase;
       letter-spacing: 1.4px;
     }
-    p {
-      font-size: 1.3rem;
-    }
+
     ul {
       position: relative;
-      right: 20px;
+      right: 2rem;
     }
   }
 `
@@ -32,9 +32,9 @@ export function Footer() {
     <FooterStyles>
       <ContainerStyle>
         <div className="footer-content">
-          <a href="/">
+          <Link to="/">
             <h6>ViktorSokolov.dev</h6>
-          </a>
+          </Link>
           <SocialMedia color="white" />
           <p>&copy; {new Date().getFullYear()}. All Rights Reserved</p>
         </div>

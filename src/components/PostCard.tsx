@@ -14,7 +14,7 @@ const Card = styled.article`
   color: #222;
   position: relative;
   max-width: 35rem;
-  transition: transform .5s;
+  transition: transform 0.5s;
   &:hover {
     box-shadow: var(--hover-shadow);
     transform: scale3d(1.025, 1.025, 1);
@@ -27,8 +27,7 @@ const Card = styled.article`
 
   .post-title {
     text-align: center;
-    color: #4c4c4c;
-    letter-spacing: 1.5px;
+    color: #191919;
   }
 
   .post-description {

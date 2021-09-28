@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import Blob from '../assets/images/Blob.svg';
 
-const HeroStyles = styled.section<{ isRootUrl: boolean }>`
+const HeroStyles = styled.section`
     max-width: 650px;
     color: #fff;
     position: relative;
     top: 40px;
     font-size: 1.6rem;
     padding-bottom: 150px;
-    display: ${p => (p.isRootUrl ? 'block' : 'none') };
 
     p {
         line-height: 35px;
@@ -30,13 +29,10 @@ const HeroStyles = styled.section<{ isRootUrl: boolean }>`
 
 export default function Hero() {
 
-    const isRootUrl = (location.pathname === '/') ? true : false;
-    console.log(isRootUrl);
-
     return (
-        <HeroStyles isRootUrl={isRootUrl}>
+        <HeroStyles>
             <h1>👋 Hi! I'm Viktor.</h1>
-            <p>I’m a full-time software engineer mainly working with Node, TypeScript, React, Angular and OpenCV. Developing  Identity verification solution.In a past Freelancer developing various automation scripts using Python. Self-learning Artificial Inteligence and Computer Vision. Working on my first MVP product  🎉 </p>
+            <p>I’m a full-time Software Engineer mainly working with Python, Node, TypeScript and React. In a past worked as a Freelancer, developed various automation scripts for E-commerce sites. I have a big passion for Software development</p>
         </HeroStyles>
     )
 }

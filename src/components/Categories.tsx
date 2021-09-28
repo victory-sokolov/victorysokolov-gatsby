@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CategorieWrapperStyle = styled.div`
+  padding: 2rem 0;
   span {
     background: var(--primary-color);
     border-radius: 10px;

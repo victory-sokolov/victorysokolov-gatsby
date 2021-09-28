@@ -18,8 +18,6 @@ const SiteWrapper = styled.div`
 `
 
 export default function Layout({ children }: any) {
-
-  // const [mode, toggleTheme] = useTheme();
   const [theme, toggleTheme] = useDarkMode()
   const mode = theme === "light" ? lightTheme : darkTheme
   t.colorSchema = mode;

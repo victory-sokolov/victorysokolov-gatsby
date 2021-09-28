@@ -1,3 +1,4 @@
+import { P } from '../components/mdx';
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import React from "react";
@@ -7,22 +8,19 @@ import Comments from '../components/Comments';
 import { FeatureImage } from "../components/FeatureImage";
 import { PostMetaInfo } from "../components/PostMetaInfo";
 import {useReadTime} from "../hooks/useReadTime";
+import { MDXProvider } from '@mdx-js/react';
+import Seo from '../components/seo'
 
 const BlogWrapper = styled.div`
-  max-width: 950px;
+  max-width: 95rem;
 `
 
 const ContentWrapper = styled.article`
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding-bottom: 5rem;
 
   h1 {
-    padding: 25px 0 15px;
-    line-height: 3rem;
-  }
-
-  p {
-    line-height: 2.2em;
+    padding: 2.5rem 0 1rem;
   }
 
   code {
@@ -49,41 +47,53 @@ const ContentWrapper = styled.article`
 `
 
 const singlePost = ({ data }) => {
-  const featureImage =
-    data.mdx.frontmatter.featureImage.childImageSharp.gatsbyImageData
-  const date = data.mdx.frontmatter.date
-  const article = data.mdx.body;
+  const post = data.post.frontmatter;
+  const featureImage = post.featureImage.childImageSharp.gatsbyImageData
+  const date = post.date
+  const article = data.post.body
+  const title = post.title
   const readTime = useReadTime(article);
-  const tags = data.mdx.frontmatter.tags.split(",");
+  const tags = post.tags.split(",")
+
+  const components = {
+    p: P,
+  }
+
   return (
-    <BlogWrapper>
-      <FeatureImage image={featureImage} styles={{ height: "50vh" }} />
-      <ContentWrapper>
-        <h1>{data.mdx.frontmatter.title}</h1>
-        <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
-        <Categories categories={tags} />
-        <MDXRenderer>{article}</MDXRenderer>
-      </ContentWrapper>
-      <Comments />
-    </BlogWrapper>
+    <>
+      <BlogWrapper>
+        <Seo
+          title={post.title}
+          description={post.description}
+          slug={post.slug}
+          ogImage={featureImage}
+          keywords={tags}
+        />
+        <FeatureImage image={featureImage} styles={{ height: "40rem" }} />
+        <ContentWrapper>
+          <h1>{title}</h1>
+          <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
+          <Categories categories={tags} />
+          <MDXProvider components={components}>
+            <MDXRenderer>{article}</MDXRenderer>
+          </MDXProvider>
+        </ContentWrapper>
+        <Comments />
+      </BlogWrapper>
+    </>
   )
 }
 
 export default singlePost
 
 export const pageQuery = graphql`
-  query singlePostQuery($id: String!) {
-    mdx(id: { eq: $id }) {
+  query singlePostQuery($id: String!, $width: Int = 1110) {
+    post: mdx(id: { eq: $id }) {
       body
+      ...postQuery
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        title
-        slug
-        tags
         featureImage {
-          childImageSharp {
-            gatsbyImageData(width: 1100, placeholder: BLURRED)
-          }
+          ...imageQuery
         }
       }
     }

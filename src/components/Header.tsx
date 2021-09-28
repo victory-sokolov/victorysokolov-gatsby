@@ -11,13 +11,17 @@ import { Toggle } from './Toggle';
 const HeaderStyles = styled.header`
   /* background: var(--primary-gradient); */
   background: ${props => props.theme.t.colorSchema.primary};
-  min-height: 250px;
-  position: relative;
+  min-height: 25rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 
   .heading-content {
     display: flex;
     align-items: center;
-    padding-top: 25px;
+    padding-top: 2.5rem;
   }
 
   .wave,
@@ -33,7 +37,7 @@ const HeaderStyles = styled.header`
   }
 
   .wave {
-    bottom: -6px;
+    bottom: -0.6rem;
     transition: all 0.5s linear;
     fill: ${props => props.theme.t.colorSchema.background};
   }
@@ -56,7 +60,7 @@ const HeaderStyles = styled.header`
 
     span:last-child {
       position: relative;
-      left: 10px;
+      left: 1rem;
     }
   }
 
