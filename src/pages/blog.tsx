@@ -6,11 +6,12 @@ import site from "../../config/site";
 import { Grid } from "../assets/styles/Grid";
 import { Pagination } from "../components/Pagination";
 import { PostCard } from "../components/PostCard";
+import Seo from '../components/seo';
 
 const GridExtended = styled(Grid)`
-  grid-gap: 55px;
-  grid-template-columns: repeat(auto-fit, 330px);
-  margin-top: 10px;
+  grid-gap: 5.5rem;
+  grid-template-columns: repeat(auto-fit, 33rem);
+  margin-top: 1rem;
   justify-content: unset;
 
   @media ${props => props.theme.t.breakpoints.mobile} {
@@ -27,16 +28,18 @@ const TopHeadline = styled.div`
 
 const Blog = ({ pageContext, data }: any) => {
   if (!data) return <p>No Post found!</p>
-
+  console.log(data)
   const { currentPage, numPages } = pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
   const nextPage = `/${currentPage + 1}`
-  const posts = data.allMdx.edges;
+  const posts = data.post.edges
+  const meta = data.frontmatter
 
   return (
     <>
+      <Seo />
       <TopHeadline>
         <h2>Blog Posts ↓</h2>
         <h3>{posts.length} Articles</h3>
@@ -71,8 +74,8 @@ const Blog = ({ pageContext, data }: any) => {
 export default Blog
 
 export const query = graphql`
-  query allPostsQuery($skip: Int!, $limit: Int!) {
-    allMdx(
+  query allPostsQuery($skip: Int, $limit: Int, $width: Int = 1110) {
+    post: allMdx(
       sort: { fields: frontmatter___date, order: DESC }
       filter: { fileAbsolutePath: { regex: "//posts//" } }
       skip: $skip
@@ -82,6 +85,11 @@ export const query = graphql`
         node {
           body
           ...postQuery
+          frontmatter {
+            featureImage {
+              ...imageQuery
+            }
+          }
         }
       }
     }
