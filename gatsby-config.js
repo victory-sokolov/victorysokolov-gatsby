@@ -1,20 +1,36 @@
-
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const site = require('./config/site').default;
+
 module.exports = {
   siteMetadata: {
-    title: "Viktor Sokolov - Personal blog",
-    author: "Viktor Sokolov",
-    description: "Blog about Software Enginnering",
-    siteUrl: process.env.ROOT_URL,
-    keywords: ["Software Engineering", "Sass business", "Web development"],
+    ...site,
   },
-
   plugins: [
     {
       resolve: `gatsby-plugin-react-helmet`,
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+        allSitePage {
+          nodes {
+            path
+          }
+        }
+        allMdx(sort: {fields: frontmatter___date, order: DESC}, filter: {slug: {glob: "!*wip*"}}) {
+          nodes {
+            frontmatter {
+              date(formatString: "YYYY-MM-DD")
+            }
+            slug
+          }
+        }
+        `,
+      },
     },
     {
       resolve: `gatsby-plugin-styled-components`,
