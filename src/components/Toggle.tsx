@@ -11,10 +11,16 @@ const ToggleButton = styled.button`
   border: none;
   background-color: ${props => props.theme.titleColor};
   color: ${props => props.theme.pageBackground};
+  transition: all 0.5s ease;
+  padding: 1.2rem;
+  border-radius: 50%;
   &:focus {
     outline: none;
   }
-  transition: all 0.5s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
 
   @media ${props => props.theme.t.breakpoints.mobile} {
     justify-content: flex-start;
@@ -25,7 +31,7 @@ export const Toggle = () => {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
   const icon =
-    theme === "light" ? <HiMoon size={28} fill="yellow" /> : <CgSun size={28} />
+    theme === "light" ? <HiMoon size={28} /> : <CgSun size={28} />
 
   return <ToggleButton onClick={toggleTheme}>{icon}</ToggleButton>
 }
