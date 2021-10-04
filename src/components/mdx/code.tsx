@@ -25,11 +25,40 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
+const MacIcons = styled.div`
+  position: relative;
+  top: 1.8rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  background: #1f2d38;
+  border-radius: 6px 6px 0 0;
+
+  > span {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 100%;
+    margin-right: 1rem;
+  }
+
+  .red {
+    background: #ee5c56;
+  }
+
+  .yellow {
+    background: #fcc12d;
+  }
+
+  .green {
+    background: #6aca43;
+  }
+`
+
 const CopyButton = (props: any) => (
   <button
     style={{
       position: "absolute",
-      top: 0,
+      top: "5rem",
       right: 0,
       border: "none",
       boxShadow: "none",
@@ -67,25 +96,30 @@ export const Code = ({ codeString, language, ...props }: Code) => {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div className="gatsby-highlight" data-language={language}>
+          <MacIcons>
+            <span className="red"></span>
+            <span className="yellow"></span>
+            <span className="green"></span>
+          </MacIcons>
           <pre className={className} style={style}>
             <CopyButton onClick={copyToClipboard}>
               {isCopied ? "🎉 Copied!" : "Copy"}
             </CopyButton>
             {tokens.map((line, i) => (
-            <Line key={i} {...getLineProps({ line, key: i })}>
-              <LineNo>{i + 1}</LineNo>
-              <LineContent>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </LineContent>
-            </Line>
+              <Line key={i} {...getLineProps({ line, key: i })}>
+                <LineNo>{i + 1}</LineNo>
+                <LineContent>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token, key })} />
+                  ))}
+                </LineContent>
+              </Line>
             ))}
           </pre>
         </div>
       )}
     </Highlight>
-  );
+  )
 };
 
 
