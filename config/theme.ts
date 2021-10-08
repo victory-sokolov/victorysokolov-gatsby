@@ -4,6 +4,7 @@ export const lightTheme = {
   link: "#0d15ec",
   primary: "linear-gradient(347deg, #3b128c 0%, #383caa 100%)",
   border: "#222",
+  mode: "black",
 }
 
 export const darkTheme = {
@@ -12,6 +13,7 @@ export const darkTheme = {
   link: "#9b87ff",
   primary: "#25005d",
   border: "#fff",
+  mode: "white",
 }
 
 export const theme = {
@@ -23,12 +25,5 @@ export const theme = {
   breakpoints: {
     mobile: "only screen and (max-width: 50rem)",
     table: "only screen and (max-width: 60rem)",
-  },
-  spacings: {
-    xxSmall: "",
-    xSmall: "",
-    small: "1rem",
-    medium: "",
-    xLarge: "4rem",
   },
 }
