@@ -1,16 +1,38 @@
+import { graphql } from 'gatsby';
 import React from "react";
-import Footer from '../components/Footer';
-import Hero from '../components/Hero';
-import LatestPosts from '../components/LatestPosts';
+import styled from "styled-components";
+import { Grid } from "../assets/styles/Grid";
 
-const App = () => {
+import RecentlyPublished from '../components/RecentlyPublished';
+import Seo from '../components/seo';
+
+const TopCategoriesStyle = styled.div``;
+
+const App = ({data}: any) => {
+
   return (
-    <>
-      <Hero />
-      <LatestPosts />
-      <Footer />
-    </>
+    <Grid cols="2fr 1fr">
+      <Seo title="Home"/>
+      <RecentlyPublished data={data} />
+    </Grid>
   )
 }
 
 export default App;
+
+export const query = graphql`
+  query posts {
+    allMdx(
+      sort: { fields: frontmatter___date, order: DESC }
+      filter: { fileAbsolutePath: { regex: "//posts//" } }
+    ) {
+      edges {
+        node {
+          id
+          excerpt(pruneLength: 120)
+          ...postQuery
+        }
+      }
+    }
+  }
+`
