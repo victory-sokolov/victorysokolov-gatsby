@@ -1,17 +1,17 @@
 import { graphql, useStaticQuery } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 
-export const FeatureImage = ({ image, styles }: any) => {
-  const { file } = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "image-not-available.png" }) {
-        childImageSharp {
-          gatsbyImageData(layout: FIXED, width: 320, placeholder: BLURRED)
-        }
-      }
-    }
-  `)
+export const FeatureImage = ({ image, alt, style }: any) => {
+  // const { file } = useStaticQuery(graphql`
+  //   query {
+  //     file {
+  //       childImageSharp {
+  //         gatsbyImageData(layout: FIXED, width: 320, height: 350, placeholder: BLURRED)
+  //       }
+  //     }
+  //   }
+  // `)
 
-  return <GatsbyImage image={image} style={styles} alt="" />
+  return <GatsbyImage image={getImage(image)} style={style} alt={alt} />
 }

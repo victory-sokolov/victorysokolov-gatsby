@@ -10,16 +10,16 @@ const CategorieWrapperStyle = styled.div`
     box-shadow: var(--light-shadow);
     text-align: center;
     letter-spacing: 1.2px;
-    padding: 7px;
+    padding: .7rem;
     color: white;
     font-size: 1.1rem;
   }
 `
 const CategorieStyle = styled.div`
   display: inline-block;
-  padding-bottom: 5px;
+  padding-bottom: .5rem;
   &:not(:first-child) {
-    margin-left: 10px;
+    margin-left: 1rem;
   }
 `
 

@@ -16,7 +16,7 @@ const Line = styled.div`
 const LineNo = styled.span`
   display: table-cell;
   text-align: right;
-  padding-right: 1em;
+  padding-right: 1rem;
   user-select: none;
   opacity: 0.5;
 `;
@@ -38,7 +38,7 @@ const MacIcons = styled.div`
     width: 1.4rem;
     height: 1.4rem;
     border-radius: 100%;
-    margin-right: 1rem;
+    margin-right: .8rem;
   }
 
   .red {
@@ -63,13 +63,13 @@ const CopyButton = (props: any) => (
       border: "none",
       boxShadow: "none",
       textDecoration: "none",
-      margin: "8px",
-      padding: "8px 12px",
+      margin: ".8rem",
+      padding: ".8rem 1.2rem",
       background: "#E2E8F022",
       color: "white",
       borderRadius: "8px",
       cursor: "pointer",
-      fontSize: "14px",
+      fontSize: "1.4rem",
       fontFamily: "sans-serif",
       lineHeight: "1",
     }}

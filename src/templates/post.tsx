@@ -46,14 +46,14 @@ const ContentWrapper = styled.article`
   }
 `
 
-const singlePost = ({ data }) => {
+const singlePost: React.FC = ({ data }) => {
   const post = data.post.frontmatter;
-  const featureImage = post.featureImage.childImageSharp.gatsbyImageData
-  const date = post.date
-  const article = data.post.body
-  const title = post.title
+  const featureImage = post.featureImage.childImageSharp.gatsbyImageData;
+  const date = post.date;
+  const article = data.post.body;
+  const title = post.title;
   const readTime = useReadTime(article);
-  const tags = post.tags.split(",")
+  const tags = post.tags.split(",");
 
   const components = {
     p: P,
@@ -69,7 +69,11 @@ const singlePost = ({ data }) => {
           ogImage={featureImage}
           keywords={tags}
         />
-        <FeatureImage image={featureImage} styles={{ height: "40rem" }} />
+        <FeatureImage
+          image={featureImage}
+          alt={post.title}
+          style={{height: "40rem"}}
+        />
         <ContentWrapper>
           <h1>{title}</h1>
           <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
@@ -87,7 +91,7 @@ const singlePost = ({ data }) => {
 export default singlePost
 
 export const pageQuery = graphql`
-  query singlePostQuery($id: String!, $width: Int = 1110) {
+  query singlePostQuery($id: String) {
     post: mdx(id: { eq: $id }) {
       body
       ...postQuery

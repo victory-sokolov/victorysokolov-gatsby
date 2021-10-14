@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import Blob from '../assets/images/Blob.svg';
 
 const HeroStyles = styled.section`
-    max-width: 650px;
+    max-width: 65rem;
     color: #fff;
     position: relative;
-    top: 40px;
+    top: 4rem;
     font-size: 1.6rem;
-    padding-bottom: 150px;
+    padding-bottom: 15rem;
 
     p {
-        line-height: 35px;
+        line-height: 3.5rem;
 
         &:before {
             content: '';
-            height: 150px;
-            width: 150px;
+            height: 15rem;
+            width: 15rem;
             background-image: url(${Blob});
             background-repeat: no-repeat;
-            background-size: 150px 150px;
+            background-size: 15rem 15rem;
             position: absolute;
             top: 14%;
         }

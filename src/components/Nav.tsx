@@ -8,7 +8,7 @@ const CloseIcon = styled.div`
     position: relative;
     flex: none;
     width: 100%;
-    height: 2px;
+    height: .2rem;
     background: #fff;
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@ const CloseIcon = styled.div`
       z-index: 1;
       top: -1rem;
       width: 100%;
-      height: 2px;
+      height: .2rem;
       background: #fff;
     }
 

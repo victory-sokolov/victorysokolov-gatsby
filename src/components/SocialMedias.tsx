@@ -6,7 +6,7 @@ import site from "../../config/site"
 const SocialMedias = styled.div`
   li {
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 1rem;
   }
 
   li:hover {

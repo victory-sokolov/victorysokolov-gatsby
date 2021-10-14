@@ -11,7 +11,7 @@ const MarkdownWrapper = styled.div`
   }
 
   ul {
-    padding-left: 30px;
+    padding-left: 3rem;
   }
 `
 

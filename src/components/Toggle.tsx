@@ -12,7 +12,7 @@ const ToggleButton = styled.button`
   background-color: ${props => props.theme.titleColor};
   color: ${props => props.theme.pageBackground};
   transition: all 0.5s ease;
-  padding: 1.2rem;
+  padding: 1rem;
   border-radius: 50%;
   &:focus {
     outline: none;
@@ -22,16 +22,21 @@ const ToggleButton = styled.button`
     background: rgba(255, 255, 255, 0.25);
   }
 
+  svg {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
   @media ${props => props.theme.t.breakpoints.mobile} {
     justify-content: flex-start;
   }
 `
 
-export const Toggle = () => {
+export const Toggle: React.FC = () => {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
   const icon =
-    theme === "light" ? <HiMoon size={28} /> : <CgSun size={28} />
+    theme === "light" ? <HiMoon /> : <CgSun />
 
   return <ToggleButton onClick={toggleTheme}>{icon}</ToggleButton>
 }

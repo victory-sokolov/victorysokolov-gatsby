@@ -4,7 +4,7 @@
 }
 .gatsby-highlight pre[class*="language-"] {
   -webkit-overflow-scrolling: touch;
-  padding: 3.5rem 0.75rem 2rem;
+  padding: 2rem 0.75rem;
 }
 
 .gatsby-highlight pre[class*="language-"]::before {

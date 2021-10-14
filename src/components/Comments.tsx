@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const CommentSection = styled.div`
   h2 {
     border-bottom: 3px solid ${props => props.theme.t.colorSchema.border};
-    padding-bottom: 8px;
+    padding-bottom: .8rem;
   }
 `
 

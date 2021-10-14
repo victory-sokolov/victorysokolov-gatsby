@@ -9,29 +9,36 @@ type PostMetaInfo = {
 
 export const MetaPostWrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   font-weight: 100;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #5b7a81;
-  padding-bottom: 10px;
+  padding-bottom: 1rem;
 
-  small:not(:first-child) {
-    margin-left: 1.5rem;
+  svg {
+    color: var(--primary-color);
+  }
+  span {
+    margin-left: .5rem;
+  }
+  time:not(:first-child) {
+    padding-left: 1rem;
   }
 `
+export const Time = styled.time`
+  svg {
+    padding-right: 1rem;
+  }
+`;
 
 export const PostMetaInfo = ({ date, readTime, children }: PostMetaInfo) => {
   return (
     <MetaPostWrapper>
-      <small>
-        <time dateTime={date} itemProp="datePublished">
-          Date published:  {date}
-        </time>
-      </small>
-      <small>
-        <span title="Estimated read time">{readTime}</span>
-      </small>
+      <time dateTime={date} itemProp="datePublished">
+        <span>
+          {date} • {readTime}
+        </span>
+      </time>
       {children}
     </MetaPostWrapper>
   )

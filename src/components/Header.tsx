@@ -43,6 +43,8 @@ const HeaderStyles = styled.header`
   }
 
   h1 {
+    position: relative;
+    bottom: .5rem;
     a {
       font-weight: 600;
       color: white;
@@ -70,7 +72,11 @@ const HeaderStyles = styled.header`
   }
 
   @media ${props => props.theme.t.breakpoints.mobile} {
-    min-height: 185px;
+    min-height: 19rem;
+
+    .heading-content {
+      padding-top: 1rem;
+    }
   }
 `
 

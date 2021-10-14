@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 10px;
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   body {
@@ -31,11 +32,10 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.4rem;
     padding:0;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    line-height: 1.8em;
+    line-height: 1.618;
   }
 
   ::selection {
@@ -86,20 +86,44 @@ const GlobalStyles = createGlobalStyle`
 
   img {
     max-width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 
   ul {
+    padding: 0;
     text-decoration: none;
   }
 
   a {
     text-decoration: none;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: calc(18px * 1.618);
     color: ${props => props.theme.t.colorSchema.link};
   }
 
-  h1 {
+  h1,h2,h3,h4,h5,h6 {
+    font-weight: 600;
     margin: 0;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    line-height: calc(3.2rem * 1.618);
+  }
+
+  h2 {
+    font-size: 2.6rem;
+    line-height: calc(2.6rem * 1.618);
+  }
+
+  h3 {
+    font-size: 2rem;
+    line-height: calc(2rem * 1.618);
+  }
+
+  p {
+    font-size: 1.4rem;
   }
 
   .tilt {
@@ -107,30 +131,32 @@ const GlobalStyles = createGlobalStyle`
     position: relative;
     display: inline-block;
   }
+
+  a.anchor > svg {
+    fill: ${props => props.theme.t.colorSchema.mode};
+    padding-right: .4rem;
+  }
+
+  @media ${props => props.theme.t.breakpoints.mobile} {
+    html {
+      font-size: 8px;
+    }
+  }
+
 `
 
 const ContainerStyle = styled.div`
-  max-width: 1100px;
-  padding-left: 35px;
-  padding-right: 35px;
+  max-width: 110rem;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
   margin-left: auto;
   margin-right: auto;
 `
 
 const MainStyles = styled.main`
   flex-grow: 1;
-  margin-top: 60px;
-  padding-bottom: 50px;
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  @media ${props => props.theme.t.breakpoints.mobile} {
-    h1 {
-      font-size: 2.5rem;
-    }
-  }
+  margin-top: 6rem;
+  padding-bottom: 5rem;
 `
 
 export { GlobalStyles, ContainerStyle, MainStyles };

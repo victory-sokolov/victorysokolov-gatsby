@@ -17,7 +17,7 @@ export const postQuery = graphql`
 export const imageQuery = graphql`
   fragment imageQuery on File {
     childImageSharp {
-      gatsbyImageData(width: $width, placeholder: BLURRED)
+      gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
     }
   }
 `
