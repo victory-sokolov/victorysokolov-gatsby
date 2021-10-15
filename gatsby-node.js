@@ -1,5 +1,4 @@
 "use strict";
-const { createFilePath } = require("gatsby-source-filesystem");
 const path = require("path");
 const createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
@@ -17,16 +16,15 @@ const createPages = async ({ actions, graphql }) => {
       }
     }
   `);
-    console.log(result.data.allMdx.edges);
     if (result.errors) {
         throw new Error(result.errors);
     }
     // Create paginated pages for posts
-    const postPerPage = 12;
+    const postPerPage = Number(process.env.GATSBY_PAGE_SIZE);
     const numPages = Math.ceil(result.data.allMdx.edges.length / postPerPage);
     Array.from({ length: numPages }).map((_, index) => {
         createPage({
-            path: index === 0 ? "/blog" : `/${index + 1}`,
+            path: index === 0 ? "/blog/" : `/blog/${index + 1}`,
             component: path.resolve("./src/pages/blog.tsx"),
             context: {
                 limit: postPerPage,
@@ -40,11 +38,13 @@ const createPages = async ({ actions, graphql }) => {
     result.data.allMdx.edges.map(edge => {
         const slug = edge.node.frontmatter.slug;
         const id = edge.node.id;
-        createPage({
-            path: "/blog/" + slug,
-            component: require.resolve("./src/templates/post.tsx"),
-            context: { id },
-        });
+        if (slug) {
+            createPage({
+                path: "/blog/" + slug,
+                component: require.resolve("./src/templates/post.tsx"),
+                context: { id },
+            });
+        }
     });
 };
 module.exports = {
