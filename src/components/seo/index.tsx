@@ -25,11 +25,6 @@ export default function Seo({ title, description, slug, ogImage, keywords }: Seo
           siteUrl
           keywords
           lang
-          favicon {
-            ico
-            sm
-            lg
-          }
           social {
             twitterHandle
           }
@@ -49,9 +44,34 @@ export default function Seo({ title, description, slug, ogImage, keywords }: Seo
       <meta name="keywords" content={keywords || meta.keywords.join(", ")} />
       <meta name="image" content={`${ogImgSrc}`} />
       <link rel="canonical" href={`${meta.siteUrl}/${slug}`} />
-      <link rel="icon" type="image/png" sizes="16x16" href={meta.favicon.ico} />
-      <link rel="icon" type="image/png" sizes="16x16" href={meta.favicon.sm} />
-      <link rel="icon" type="image/png" sizes="32x32" href={meta.favicon.sm} />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/static/favicon-16x16.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/static/favicon-32x32.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/static/apple-touch-icon.png"
+      />
+      <link
+        rel="android-touch-icon"
+        sizes="192x192"
+        href="/static/android-chrome-192x192.png"
+      />
+      <link
+        rel="android-touch-icon"
+        sizes="512x512"
+        href="/static/android-chrome-512x512.png"
+      />
+      <link rel="manifest" href="/static/manifest.json" />
 
       {/* OpenGraph tags */}
       <meta name="image:alt" content={title || meta.title} />

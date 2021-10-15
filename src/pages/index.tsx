@@ -1,14 +1,10 @@
 import { graphql } from 'gatsby';
 import React from "react";
-import styled from "styled-components";
 import { Grid } from "../assets/styles/Grid";
-
 import RecentlyPublished from '../components/RecentlyPublished';
 import Seo from '../components/seo';
 
-const TopCategoriesStyle = styled.div``;
-
-const App = ({data}: any) => {
+const App: React.FC = ({data}: any) => {
 
   return (
     <Grid cols="2fr 1fr">
