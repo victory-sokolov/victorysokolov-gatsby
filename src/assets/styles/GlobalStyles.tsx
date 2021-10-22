@@ -4,30 +4,40 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --black: #2E2E2E;
     --yellow: #ffc600;
+    --mode: #222;
     --white: #fff;
+    --body: #fff;
     --grey: #efefef;
-    --primary-color: #383caa;
-    --primary-gradient: linear-gradient(347deg, #3b128c 0%, #383caa 100%);
+    --code: #1d1f21;
+    --primary-color: linear-gradient(347deg, #3b128c 0%, #383caa 100%);
+    --header: var(--primary-color);
     --light-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
     --hover-shadow: 0 25px 50px rgba(154,160,185,.05), 0 35px 80px rgba(166,173,201,.2);
-    --link-color: #0d15ec;
+    --link-color: #9b87ff;
     --scrollbar-color: #d6d6d6;
     --paragraph-color: #534a54;
-    --dark-background: rgb(18, 15, 48);
     --selection: #364fc7;
   }
+
+[data-theme="dark"] {
+  --link-color: #9b87ff;
+  --body: #25005d;
+  --mode: #fff;
+  --header: #25005d;
+}
 
   html {
     background-attachment: fixed;
     font-size: 10px;
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color);
+    scroll-behavior: smooth;
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   body {
-    background: ${props => props.theme.t.colorSchema.background};
-    color: ${props => props.theme.t.colorSchema.title};
+    background: var(--body);
+    color: var(--mode);
     transition: all 0.50s linear;
     font-size: 1.4rem;
     padding:0;
@@ -99,7 +109,7 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     font-size: 1.6rem;
     line-height: calc(18px * 1.618);
-    color: ${props => props.theme.t.colorSchema.link};
+    color: var(--link-color);
   }
 
   h1,h2,h3,h4,h5,h6 {
@@ -133,7 +143,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a.anchor > svg {
-    fill: ${props => props.theme.t.colorSchema.mode};
+    fill: var(--mode);
     padding-right: .4rem;
   }
 
@@ -142,7 +152,6 @@ const GlobalStyles = createGlobalStyle`
       font-size: 8px;
     }
   }
-
 `
 
 const ContainerStyle = styled.div`
@@ -160,4 +169,3 @@ const MainStyles = styled.main`
 `
 
 export { GlobalStyles, ContainerStyle, MainStyles };
-

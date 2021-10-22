@@ -1,7 +1,7 @@
 import "normalize.css";
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme, theme as t } from "../../config/theme";
+import { theme as t } from "../../config/theme";
 import {
   ContainerStyle,
   GlobalStyles,
@@ -16,22 +16,22 @@ const SiteWrapper = styled.div`
   min-height: 100vh;
   flex-direction: column;
 `
+ const Layout: React.FC<React.ReactNode> = ({children}) => {
+   const [theme, toggleTheme] = useDarkMode()
 
-export default function Layout({ children }: any) {
-  const [theme, toggleTheme] = useDarkMode()
-  const mode = theme === "light" ? lightTheme : darkTheme
-  t.colorSchema = mode;
+   return (
+     <ThemeProvider theme={{ t, theme, toggleTheme }}>
+       <SiteWrapper>
+         <GlobalStyles />
+         <Header />
+         <MainStyles>
+           <ContainerStyle>{children}</ContainerStyle>
+         </MainStyles>
+         <Footer />
+       </SiteWrapper>
+     </ThemeProvider>
+   )
+ }
 
-  return (
-    <ThemeProvider theme={{ t, theme, toggleTheme }}>
-      <SiteWrapper>
-        <GlobalStyles />
-        <Header />
-        <MainStyles>
-          <ContainerStyle>{children}</ContainerStyle>
-        </MainStyles>
-        <Footer />
-      </SiteWrapper>
-    </ThemeProvider>
-  )
-}
+
+export default Layout;
