@@ -1,7 +1,7 @@
+import { graphql, useStaticQuery } from 'gatsby';
 import React from "react"
-import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa"
 import styled from "styled-components"
-import site from "../../config/site"
 
 const SocialMedias = styled.div`
   li {
@@ -14,34 +14,56 @@ const SocialMedias = styled.div`
   }
 `
 
-export default function SocialMedia({ color }: any) {
+const SocialMedia: React.FC<{color: string}> = ({ color }) => {
+
+    const {
+      site: { siteMetadata: meta },
+    } = useStaticQuery(graphql`
+      query {
+        site {
+          siteMetadata {
+            social {
+              twitter
+              linkedin
+              github
+            }
+          }
+        }
+      }
+    `)
   return (
     <SocialMedias>
       <ul>
         <li>
           <a
-            href={site.social.twitter}
+            href={meta.social.twitter}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter color={color} />
+            <FaTwitter color={color} size={22}/>
           </a>
         </li>
         <li>
           <a
-            href={site.social.linkedin}
+            href={meta.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedin color={color} />
+            <FaLinkedin color={color} size={22}/>
           </a>
         </li>
         <li>
-          <a href={site.social.instagram} target="_blank" rel="noopener noreferrer">
-            <FaInstagram color={color} />
+          <a
+            href={meta.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub color={color} size={22}/>
           </a>
         </li>
       </ul>
     </SocialMedias>
   )
 }
+
+export default SocialMedia;
