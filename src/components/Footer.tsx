@@ -6,7 +6,7 @@ import { Link } from 'gatsby';
 
 const FooterStyles = styled.footer`
   display: flex;
-  background: ${props => props.theme.t.colorSchema.primary};
+  background: var(--primary-color);
   color: #fff;
   text-align: center;
   font-size: 2rem;
@@ -19,15 +19,10 @@ const FooterStyles = styled.footer`
       text-transform: uppercase;
       letter-spacing: 1.4px;
     }
-
-    ul {
-      position: relative;
-      right: 2rem;
-    }
   }
 `
 
-export function Footer() {
+export const Footer: React.FC = () => {
   return (
     <FooterStyles>
       <ContainerStyle>

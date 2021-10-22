@@ -28,7 +28,7 @@ const ContentWrapper = styled.article`
     font-size: 1.5rem;
     line-height: 1.8rem;
     color: #fff;
-    background-color: ${props => props.theme.t.colors.dark3};
+    background-color: var(--code);
     padding: 0 0.3rem;
   }
 
@@ -46,7 +46,7 @@ const ContentWrapper = styled.article`
   }
 `
 
-const singlePost: React.FC = ({ data }) => {
+const singlePost: React.FC<any> = ({ data }) => {
   const post = data.post.frontmatter;
   const featureImage = post.featureImage.childImageSharp.gatsbyImageData;
   const date = post.date;

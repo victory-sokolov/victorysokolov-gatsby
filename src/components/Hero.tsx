@@ -27,7 +27,7 @@ const HeroStyles = styled.section`
 
 `;
 
-export default function Hero() {
+const Hero: React.FC = () => {
 
     return (
         <HeroStyles>
@@ -36,3 +36,5 @@ export default function Hero() {
         </HeroStyles>
     )
 }
+
+export default Hero;

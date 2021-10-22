@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React from 'react';
 import { BsArrowRight } from "react-icons/bs";
 import styled from "styled-components";
+import { Post } from 'types';
 import { P } from './mdx';
 
 const LatestContentContainer = styled.div`
@@ -22,14 +23,12 @@ const LatestContentContainer = styled.div`
       bottom: -4px;
       width: 100%;
       height: 1px;
-      background: ${props => props.theme.t.colorSchema.link};
+      background: var(--link-color);
       transform: scaleX(0);
     }
     &:hover:before {
       transform: scaleX(1);
     }
-  }
-
   }
 
   [aria-label="Visit blog page"] {
@@ -51,15 +50,14 @@ const LatestContentStyle = styled.article`
   }
 `
 
-export default function RecentlyPublished({ data }: any) {
+const RecentlyPublished = ({ data }: any) => {
   const posts = data.allMdx.edges;
-  console.log(posts)
 
   return (
     <LatestContentContainer>
       <h2>Recently published</h2>
       <hr />
-      {posts.map(post => (
+      {posts.map((post) => (
         <LatestContentStyle key={post.node.id}>
           <h3>
             <Link to={`/blog/${post.node.frontmatter.slug}`} className="effect">
@@ -78,3 +76,5 @@ export default function RecentlyPublished({ data }: any) {
     </LatestContentContainer>
   )
 }
+
+export default RecentlyPublished;

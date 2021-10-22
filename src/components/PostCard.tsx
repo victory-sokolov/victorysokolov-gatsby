@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FeatureImage } from "./FeatureImage";
 import { P } from './mdx';
 import { PostMetaInfo } from "./PostMetaInfo";
+import { Post } from "../types";
 
 const Card = styled.article`
   display: grid;
@@ -41,7 +42,7 @@ const Card = styled.article`
   }
 `
 
-export function PostCard({ title, date, slug, excerpt, image, readTime }: any) {
+export const PostCard: React.FC<any> = ({ title, date, slug, excerpt, image, readTime }) => {
   return (
     <Card>
       <Link to={slug}>

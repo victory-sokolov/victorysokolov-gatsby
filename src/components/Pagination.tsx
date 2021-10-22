@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
-interface PaginationProps {
+type PaginationProps = {
   isFirst: boolean
   isLast: boolean
   prevPage: string
@@ -17,7 +17,7 @@ const PaginationWrapper = styled.div`
   justify-content: center;
 
   a:nth-child(1) {
-    color: ${props =>
+    color: ${(props: PaginationProps) =>
       props.isFirst ? props.theme.colors.dark3 : props.theme.colors.dark1};
     pointer-events: ${props => (props.isFirst ? "none" : "auto")};
     cursor: ${props => (props.isFirst ? "default" : "pointer")};
@@ -48,12 +48,12 @@ const PaginationElement = styled(props => <Link {...props} />)`
   }
 `
 
-export function Pagination({
+export const Pagination: React.FC<PaginationProps> = ({
   isFirst,
   isLast,
   prevPage,
   nextPage,
-}: PaginationProps) {
+}) => {
   return (
     <PaginationWrapper isFirst={isFirst} isLast={isLast}>
       <PaginationElement to={prevPage}>Previous Page</PaginationElement>

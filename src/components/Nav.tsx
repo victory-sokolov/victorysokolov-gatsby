@@ -33,7 +33,7 @@ const CloseIcon = styled.div`
 `
 
 const Menu = styled.div`
- @media ${props => props.theme.t.breakpoints.mobile} {
+  @media ${props => props.theme.t.breakpoints.mobile} {
     position: fixed;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@ const Menu = styled.div`
       max-height: 100vh;
       opacity: 0;
     }
- }
+  }
 `
 
 const LinkItem = styled.li`
@@ -134,6 +134,7 @@ const Hamburger = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     ${({ isOpen }: {isOpen:boolean}) =>
       isOpen
@@ -159,7 +160,7 @@ const Hamburger = styled.div`
   }
 `
 
-export default function Nav() {
+ const Nav:React.FC = () => {
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -207,3 +208,5 @@ export default function Nav() {
     </NavStyles>
   )
 }
+
+export default Nav;

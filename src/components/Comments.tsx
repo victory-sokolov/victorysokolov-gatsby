@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 const CommentSection = styled.div`
   h2 {
-    border-bottom: 3px solid ${props => props.theme.t.colorSchema.border};
+    border-bottom: 3px solid var(--mode);
     padding-bottom: .8rem;
   }
 `
 
-const Comments = () => {
+const Comments: React.FC = () => {
 
-  const commentBox = React.createRef();
+  const commentBox = React.createRef<HTMLDivElement>()
 
   useEffect(() => {
 

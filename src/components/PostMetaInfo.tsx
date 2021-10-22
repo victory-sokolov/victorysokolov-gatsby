@@ -4,7 +4,7 @@ import styled from "styled-components";
 type PostMetaInfo = {
   date: string,
   readTime: string,
-  children?: any
+  children?: React.ReactNode
 }
 
 export const MetaPostWrapper = styled.div`
@@ -31,7 +31,7 @@ export const Time = styled.time`
   }
 `;
 
-export const PostMetaInfo = ({ date, readTime, children }: PostMetaInfo) => {
+export const PostMetaInfo: React.FC<PostMetaInfo> = ({ date, readTime, children }) => {
   return (
     <MetaPostWrapper>
       <time dateTime={date} itemProp="datePublished">
