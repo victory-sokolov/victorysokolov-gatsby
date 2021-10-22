@@ -1,4 +1,3 @@
-import { globalHistory } from "@reach/router";
 import { Link } from "gatsby";
 import "normalize.css";
 import React, { useEffect, useState } from "react";
@@ -7,11 +6,11 @@ import { ContainerStyle } from "../assets/styles/GlobalStyles";
 import Hero from "./Hero";
 import Nav from "./Nav";
 import { Toggle } from './Toggle';
+import { useLocation } from "@reach/router"
 
 const HeaderStyles = styled.header`
-  /* background: var(--primary-gradient); */
-  background: ${props => props.theme.t.colorSchema.primary};
-  min-height: 25rem;
+  background: var(--header);
+  min-height: 20rem;
   position: sticky;
   top: 0;
   left: 0;
@@ -39,7 +38,7 @@ const HeaderStyles = styled.header`
   .wave {
     bottom: -0.6rem;
     transition: all 0.5s linear;
-    fill: ${props => props.theme.t.colorSchema.background};
+    fill: var(--body);
   }
 
   h1 {
@@ -80,17 +79,13 @@ const HeaderStyles = styled.header`
   }
 `
 
-export function Header() {
-  const path = globalHistory.location.pathname;
+export const Header: React.FC = () => {
+  const path = useLocation().pathname;
   const [isRootUrl, setIsRootUrl] = useState(path === "/" ? true : false)
 
   useEffect(() => {
-    return globalHistory.listen(({ action }) => {
-      if (action === "PUSH") {
-        setIsRootUrl(path === "/" ? true : false)
-      }
-    })
-  }, [])
+    setIsRootUrl(path === "/" ? true : false)
+  }, [path])
 
   return (
     <HeaderStyles>
