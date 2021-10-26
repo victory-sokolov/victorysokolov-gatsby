@@ -39,8 +39,9 @@ const SocialMedia: React.FC<{color: string}> = ({ color }) => {
             href={meta.social.twitter}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Twitter"
           >
-            <FaTwitter color={color} size={22}/>
+            <FaTwitter color={color} size={22} />
           </a>
         </li>
         <li>
@@ -48,8 +49,9 @@ const SocialMedia: React.FC<{color: string}> = ({ color }) => {
             href={meta.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn"
           >
-            <FaLinkedin color={color} size={22}/>
+            <FaLinkedin color={color} size={22} />
           </a>
         </li>
         <li>
@@ -57,8 +59,9 @@ const SocialMedia: React.FC<{color: string}> = ({ color }) => {
             href={meta.social.github}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub"
           >
-            <FaGithub color={color} size={22}/>
+            <FaGithub color={color} size={22} />
           </a>
         </li>
       </ul>

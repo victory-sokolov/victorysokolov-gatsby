@@ -36,7 +36,12 @@ export default function Seo({ title, description, slug, ogImage, keywords }: Seo
   const ogImgSrc = `${meta.siteUrl}${ogImage?.images?.fallback?.src}`
 
   return (
-    <Helmet>
+    //@ts-ignore
+    <Helmet
+      htmlAttributes={{
+        lang: "en"
+      }}
+    >
       <title>{`${meta.title} | ${title}`}</title>
       <meta name="title" content={title || meta.title} />
       <meta name="description" content={description || meta.description} />

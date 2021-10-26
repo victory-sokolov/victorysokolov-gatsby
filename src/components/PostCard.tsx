@@ -45,7 +45,7 @@ const Card = styled.article`
 export const PostCard: React.FC<any> = ({ title, date, slug, excerpt, image, readTime }) => {
   return (
     <Card>
-      <Link to={slug}>
+      <Link to={slug} aria-label={title}>
         <FeatureImage image={image} alt={title}/>
         <header>
           <h3 className="post-title">{title}</h3>

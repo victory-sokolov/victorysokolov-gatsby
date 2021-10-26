@@ -37,6 +37,5 @@ export const Toggle: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const icon =
     theme === "light" ? <HiMoon /> : <CgSun />
-
-  return <ToggleButton onClick={toggleTheme}>{icon}</ToggleButton>
+  return <ToggleButton aria-label="Switch color mode" onClick={toggleTheme}>{icon}</ToggleButton>
 }

@@ -80,7 +80,7 @@ const LinkItem = styled.li`
 `
 
 const Link = styled(GatsbyLink)`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   letter-spacing: 2.2px;
   padding: 1.4rem 0;
   margin: 0 2rem;

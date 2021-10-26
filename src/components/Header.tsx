@@ -10,7 +10,7 @@ import { useLocation } from "@reach/router"
 
 const HeaderStyles = styled.header`
   background: var(--header);
-  min-height: 20rem;
+  min-height: 18rem;
   position: sticky;
   top: 0;
   left: 0;
@@ -36,19 +36,17 @@ const HeaderStyles = styled.header`
   }
 
   .wave {
-    bottom: -0.6rem;
+    bottom: -0.5rem;
     transition: all 0.5s linear;
     fill: var(--body);
   }
 
   h1 {
-    position: relative;
-    bottom: .5rem;
     a {
-      font-weight: 600;
+      font-weight: 800;
       color: white;
       letter-spacing: 1.5px;
-      font-size: 2rem;
+      font-size: 3rem;
 
       &:hover > span:first-child {
         animation: moveTextRight 1s;
@@ -71,10 +69,19 @@ const HeaderStyles = styled.header`
   }
 
   @media ${props => props.theme.t.breakpoints.mobile} {
-    min-height: 19rem;
+    min-height: 10rem;
 
     .heading-content {
       padding-top: 1rem;
+    }
+
+    h1 a {
+      font-size: 2.4rem;
+    }
+
+    .wave,
+    .wave-bottom {
+      display: none;
     }
   }
 `

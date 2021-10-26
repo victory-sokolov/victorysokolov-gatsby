@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const CommentSection = styled.div`
   h2 {
-    border-bottom: 3px solid var(--mode);
+    border-bottom: 2px solid var(--mode);
     padding-bottom: .8rem;
   }
 `

@@ -9,15 +9,16 @@ const FooterStyles = styled.footer`
   background: var(--primary-color);
   color: #fff;
   text-align: center;
-  font-size: 2rem;
   margin-top: 6rem;
 
   .footer-content {
-    padding: 1.6rem;
+    padding: 1rem;
     a {
       color: #fff;
       text-transform: uppercase;
       letter-spacing: 1.4px;
+      font-weight: 600;
+      font-size: 1.4rem;
     }
   }
 `
@@ -27,8 +28,8 @@ export const Footer: React.FC = () => {
     <FooterStyles>
       <ContainerStyle>
         <div className="footer-content">
-          <Link to="/">
-            <h6>ViktorSokolov.dev</h6>
+          <Link to="/" aria-label="Home">
+            ViktorSokolov.dev
           </Link>
           <SocialMedia color="white" />
           <p>&copy; {new Date().getFullYear()}. All Rights Reserved</p>
