@@ -15,6 +15,7 @@ const SiteWrapper = styled.div`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  position: relative;
 `
  const Layout: React.FC<React.ReactNode> = ({children}) => {
    const [theme, toggleTheme] = useDarkMode()

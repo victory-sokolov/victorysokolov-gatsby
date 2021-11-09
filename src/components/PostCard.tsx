@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { FeatureImage } from "./FeatureImage";
 import { P } from './mdx';
 import { PostMetaInfo } from "./PostMetaInfo";
-import { Post } from "../types";
 
 const Card = styled.article`
   display: grid;
@@ -14,7 +13,7 @@ const Card = styled.article`
   border-radius: 8px;
   color: #222;
   position: relative;
-  max-width: 35rem;
+  max-width: 34rem;
   transition: transform 0.5s;
   &:hover {
     box-shadow: var(--hover-shadow);
@@ -35,6 +34,7 @@ const Card = styled.article`
   .post-title {
     text-align: center;
     color: #191919;
+    margin-top: 1.5rem;
   }
 
   .post-description {
