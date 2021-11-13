@@ -1,3 +1,3 @@
 import { wrapRootElement as wrapper } from "./wrapRootElement";
 
-export const wrapRootElement = wrapper;
+export const wrapPageElement = wrapper

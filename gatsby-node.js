@@ -1,5 +1,10 @@
 "use strict";
-const path = require("path");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createPages = void 0;
+const path_1 = __importDefault(require("path"));
 const createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
     const result = await graphql(`
@@ -25,13 +30,13 @@ const createPages = async ({ actions, graphql }) => {
     Array.from({ length: numPages }).map((_, index) => {
         createPage({
             path: index === 0 ? "/blog/" : `/blog/${index + 1}`,
-            component: path.resolve("./src/pages/blog.tsx"),
+            component: path_1.default.resolve("./src/pages/blog.tsx"),
             context: {
                 limit: postPerPage,
                 skip: index * postPerPage,
                 numPages,
-                currentPage: index + 1,
-            },
+                currentPage: index + 1
+            }
         });
     });
     // Create single blog post
@@ -40,13 +45,11 @@ const createPages = async ({ actions, graphql }) => {
         const id = edge.node.id;
         if (slug) {
             createPage({
-                path: "/blog/" + slug,
+                path: `/blog/${slug}`,
                 component: require.resolve("./src/templates/post.tsx"),
-                context: { id },
+                context: { id }
             });
         }
     });
 };
-module.exports = {
-    createPages,
-};
+exports.createPages = createPages;
