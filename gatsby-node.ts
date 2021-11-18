@@ -1,8 +1,10 @@
 import path from "path"
 import { GatsbyNode } from "gatsby"
-import { QueryResult, INode, Post, PostFrontMatter } from "./src/types"
+import { QueryResult, Post, PostFrontMatter } from "./src/types"
 
-type Page = Pick<Post, "id"> & { frontmatter: Pick<PostFrontMatter, "slug"> }
+type Page = Pick<Post, "id"> & {
+  frontmatter: Pick<PostFrontMatter, "slug" | "status">
+}
 
 export const createPages: GatsbyNode["createPages"] = async ({
   actions,

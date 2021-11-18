@@ -9,25 +9,22 @@ import { FeatureImage } from "../components/FeatureImage";
 import { PostMetaInfo } from "../components/PostMetaInfo";
 import {useReadTime} from "../hooks/useReadTime";
 import { MDXProvider } from '@mdx-js/react';
-import Seo from '../components/seo'
+import Seo from '../components/seo';
 
 const BlogWrapper = styled.div`
-  max-width: 95rem;
+  max-width: 80rem;
 `
 
 const ContentWrapper = styled.article`
   margin: 0 auto;
-  padding-bottom: 5rem;
-
-  h1 {
-    padding: 2.5rem 0 1rem;
-  }
+  padding: 2rem 0 5rem;
+  position: relative;
 
   code {
     font-family: "Roboto Mono, monospace";
     font-size: 1.5rem;
     line-height: 1.8rem;
-    color: #fff;
+    color: var(--white);
     background-color: var(--code);
     padding: 0 0.3rem;
   }
@@ -72,12 +69,12 @@ const singlePost: React.FC<any> = ({ data }) => {
         <FeatureImage
           image={featureImage}
           alt={post.title}
-          style={{height: "40rem"}}
+          style={{ height: "40rem", paddingBottom: "1rem" }}
         />
         <ContentWrapper>
-          <h1>{title}</h1>
+          <h1 itemProp="headline">{title}</h1>
           <PostMetaInfo date={date} readTime={readTime}></PostMetaInfo>
-          <Categories categories={tags} />
+          <Categories style={{marginBottom: '6rem'} }categories={tags} />
           <MDXProvider components={components}>
             <MDXRenderer>{article}</MDXRenderer>
           </MDXProvider>

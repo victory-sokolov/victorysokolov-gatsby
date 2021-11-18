@@ -9,20 +9,10 @@ import Seo from '../components/seo';
 import { GatsbyProps } from '../types';
 
 const GridExtended = styled(Grid)`
-  grid-gap: 5.5rem;
+  grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, 33rem);
   margin-top: 1rem;
   justify-content: unset;
-
-  @media ${props => props.theme.t.breakpoints.mobile} {
-    justify-content: center;
-  }
-`;
-
-const TopHeadline = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 const Blog: React.FC<GatsbyProps> = ({ pageContext, data }) => {
@@ -33,15 +23,13 @@ const Blog: React.FC<GatsbyProps> = ({ pageContext, data }) => {
   const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
   const nextPage = `/${currentPage + 1}`
-  const posts = data.post.edges;
+  const posts = data.post.edges
 
   return (
     <>
       <Seo title="Blog posts" slug="blog" />
-      <TopHeadline>
-        <h2>Blog Posts ↓</h2>
-        <h3>{posts.length} Articles</h3>
-      </TopHeadline>
+      <h2>Blog Posts ↓</h2>
+      <h4>{posts.length} Articles</h4>
       <GridExtended cols="1fr 1fr 1fr">
         {posts.map(({node}: any) => (
           <PostCard
@@ -78,7 +66,10 @@ export const query = graphql`
   ) {
     post: allMdx(
       sort: { fields: frontmatter___date, order: DESC }
-      filter: { fileAbsolutePath: { regex: "//posts//" } }
+      filter: {
+        fileAbsolutePath: { regex: "//posts//" },
+        frontmatter: { status: { eq: "Published" } }
+      },
       skip: $skip
       limit: $limit
     ) {
