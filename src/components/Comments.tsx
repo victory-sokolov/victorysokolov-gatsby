@@ -26,7 +26,7 @@ const Comments: React.FC = () => {
     if (commentBox && commentBox.current) {
       commentBox.current.appendChild(commentScript)
     }
-  })
+  }, [])
 
     return (
       <CommentSection>

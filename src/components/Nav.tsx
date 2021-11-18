@@ -91,7 +91,7 @@ const Link = styled(GatsbyLink)`
     top: 0;
     left: 0;
     overflow: hidden;
-    padding: 1rem 0;
+    padding: 1.1rem 0;
     max-width: 0;
     border-bottom: 2px solid #fff;
     color: #fff;
@@ -123,8 +123,8 @@ const Hamburger = styled.div`
     top: 0;
     right: 0;
     z-index: 1;
-    width: 3rem;
-    height: 3rem;
+    width: 4.5rem;
+    height: 4.5rem;
     padding: 1rem;
     background: linear-gradient(
       90deg,

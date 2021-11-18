@@ -20,12 +20,13 @@ export const postFragment = graphql`
       ...PostFrontmatter
     }
   }
-`;
+`
 
 export const postQuery = graphql`
   fragment postQuery on Mdx {
     id
     excerpt(pruneLength: 120)
+    tableOfContents
     frontmatter {
       date(formatString: "MMMM DD, YYYY")
       slug

@@ -6,11 +6,11 @@ type Category = {
 }
 
 const CategorieWrapperStyle = styled.div`
-  padding: 1.5rem 0;
+  padding: .5rem 0;
   span {
     background: var(--primary-color);
-    border-radius: 10px;
     box-shadow: var(--light-shadow);
+    border-radius: 10px;
     text-align: center;
     letter-spacing: 1.2px;
     padding: .7rem;
@@ -25,10 +25,10 @@ const CategorieStyle = styled.div`
     margin-left: 1rem;
   }
 `
-const Categories: React.FC<Category> = ({ categories }) => {
+const Categories: React.FC<Category> = ({ categories, style }) => {
 
   return (
-    <CategorieWrapperStyle>
+    <CategorieWrapperStyle style={{...style}}>
       {categories.map((category: string, index: number) => (
         <CategorieStyle key={index}>
           <span>{category}</span>

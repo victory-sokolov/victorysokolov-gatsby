@@ -12,7 +12,7 @@ export const MetaPostWrapper = styled.div`
   align-items: center;
   font-weight: 100;
   font-size: 1.4rem;
-  color: #5b7a81;
+  color: var(--small-text);
   padding-bottom: 1rem;
 
   svg {

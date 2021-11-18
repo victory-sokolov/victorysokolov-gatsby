@@ -14,16 +14,11 @@ const Card = styled.article`
   color: #222;
   position: relative;
   max-width: 34rem;
+  margin-bottom: 2rem;
   transition: transform 0.5s;
   &:hover {
     box-shadow: var(--hover-shadow);
     transform: scale3d(1.025, 1.025, 1);
-  }
-
-  img {
-    height: 25rem;
-    width: 35rem;
-    object-fit: cover;
   }
 
   header {
@@ -46,7 +41,7 @@ export const PostCard: React.FC<any> = ({ title, date, slug, excerpt, image, rea
   return (
     <Card>
       <Link to={slug} aria-label={title}>
-        <FeatureImage image={image} alt={title}/>
+        <FeatureImage image={image} alt={title} style={{ height: "25rem", objectFit: "cover"}}/>
         <header>
           <h3 className="post-title">{title}</h3>
           <P className="post-description">{excerpt}</P>

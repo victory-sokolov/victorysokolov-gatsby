@@ -9,7 +9,7 @@ const HeroStyles = styled.section`
   padding: 2rem 0 10rem;
 
   p {
-    line-height: 3.5rem;
+    line-height: 3rem;
     font-size: 1.6rem;
     &:before {
       content: "";
