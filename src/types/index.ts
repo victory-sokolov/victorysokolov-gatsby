@@ -1,7 +1,7 @@
-import { GatsbyImageProps } from 'gatsby-plugin-image';
+import { GatsbyImageProps } from "gatsby-plugin-image"
 
 export type INode<T> = {
-    node: T
+  node: T
 }
 
 export type QueryResult<T> = {
@@ -32,18 +32,18 @@ export type featureImage = {
 }
 
 export type PostFrontMatter = {
-    date: string
-    slug: string
-    title: string
-    description: string
-    tags: string[]
-    status: string
-    image: featureImage
+  date: string
+  slug: string
+  title: string
+  description: string
+  tags: string[]
+  status: string
+  image: featureImage
 }
 
 export type Post = {
-    body: string
-    id: string
-    excerpt: string
-    frontmatter: PostFrontMatter
+  body: string
+  id: string
+  excerpt: string
+  frontmatter: PostFrontMatter
 }
