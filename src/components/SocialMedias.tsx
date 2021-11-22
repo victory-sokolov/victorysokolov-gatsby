@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React from "react"
-import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa"
+import { FaLinkedin, FaTwitter, FaGithub, FaDev } from "react-icons/fa"
 import styled from "styled-components"
 
 const SocialMedias = styled.div`
@@ -26,6 +26,7 @@ const SocialMedia: React.FC<{color: string}> = ({ color }) => {
               twitter
               linkedin
               github
+              devto
             }
           }
         }
@@ -62,6 +63,16 @@ const SocialMedia: React.FC<{color: string}> = ({ color }) => {
             aria-label="GitHub"
           >
             <FaGithub color={color} size={22} />
+          </a>
+        </li>
+        <li>
+          <a
+            href={meta.social.devto}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Devto"
+          >
+            <FaDev color={color} size={22} />
           </a>
         </li>
       </ul>

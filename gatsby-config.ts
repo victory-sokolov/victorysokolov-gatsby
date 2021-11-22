@@ -23,6 +23,7 @@ export default {
       twitter: "https://twitter.com/victorysokolov",
       twitterHandle: "@victorysokolov",
       github: "https://github.com/victory-sokolov",
+      devto: "https://dev.to/victorysokolov",
       linkedin: "https://www.linkedin.com/in/sokolov-viktor"
     }
   },
