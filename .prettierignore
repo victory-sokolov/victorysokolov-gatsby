@@ -1,4 +1,7 @@
-.cache
 package.json
 package-lock.json
 public
+.cache/                                                                                                               8 dist/
+build/
+coverage/
+node_modules/
