@@ -1,5 +1,13 @@
 [build]
-  publish = "public"
+    command = "npm run build"
+    functions = "functions"
+    publish = "public"
+
+[[redirect]]
+    from = "/api/*"
+    to =" /.netlify/functions/:splat"
+    status = 200
 
 [[plugins]]
-package = "netlify-plugin-gatsby-cache"
+    package = "@netlify/plugin-gatsby"
+    package = "netlify-plugin-lighthouse"

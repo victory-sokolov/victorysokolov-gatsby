@@ -1,0 +1,7 @@
+{
+    "files": [
+        "./posts/**/*.mdx"
+    ],
+    "generateDictionary": true,
+    "quiet": false
+}

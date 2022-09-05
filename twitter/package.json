@@ -1,0 +1,18 @@
+{
+    "name": "twitter",
+    "version": "1.0.0",
+    "description": "Fetch tips from personal twitter account.",
+    "main": "twitter.js",
+    "type": "module",
+    "scripts": {
+        "start": "set NODE_ENV=prod && node twitter"
+    },
+    "keywords": [],
+    "author": "Viktor Sokolov",
+    "license": "ISC",
+    "dependencies": {
+        "file-type": "^17.1.1",
+        "node-fetch": "^3.2.4",
+        "twitter-api-v2": "^1.12.1"
+    }
+}

@@ -1,0 +1,22 @@
+---
+tweetUrl: https://twitter.com/victorysokolov/status/1476464070022746113
+title: Python Tip
+description: "Python Tip 
+Access dictionary as an attribute using dot notation with a help of SimpleNamespace that creates an empty class from which you can add or create attributes "
+slug: python-tip
+date: 2021-12-30T08:04:00.000Z
+featureImage: python-tip.jpg
+tags: Python
+---
+```python
+from types import SimpleNamespace  
+
+d = {
+  "x": 100,
+  "y": 200
+}
+ns = SimpleNamespace(**d)
+
+print(ns.x) // 100
+print(ns.y) // 200
+```

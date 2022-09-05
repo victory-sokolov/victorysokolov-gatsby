@@ -1,9 +1,12 @@
 import { MDXProvider } from '@mdx-js/react';
+import { GatsbyBrowser } from 'gatsby';
 import { preToCodeBlock } from 'mdx-utils';
 import React from 'react';
+
 import Layout from './src/components/Layout';
 import { Code } from './src/components/mdx';
 import "./src/components/mdx/language-tabs.css";
+
 
 const components = {
     pre: preProps => {
@@ -16,13 +19,10 @@ const components = {
     wrapper: ({ children }) => <>{ children }</>
 };
 
-export const wrapRootElement = ({ element, props }) => {
+export const wrapRootElement: GatsbyBrowser["wrapPageElement"] = ({ element, props }) => {
     return (
-        <MDXProvider components= { components } >
-        <Layout {...props } >
-            {element}
-        </Layout>
+        <MDXProvider components={components}>
+            <Layout {...props}>{element}</Layout>
         </MDXProvider>
-    )
-}
-
+    );
+};

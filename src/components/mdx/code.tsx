@@ -1,17 +1,17 @@
-import Highlight, { defaultProps, Language } from "prism-react-renderer";
-import theme from "prism-react-renderer/themes/nightOwl";
-import React, { useState } from "react";
-import styled from 'styled-components';
+import Highlight, { defaultProps, Language } from "prism-react-renderer"
+import theme from "prism-react-renderer/themes/nightOwl"
+import React, { useState } from "react"
+import styled from "styled-components"
 
 type Code = {
-  codeString: string,
-  language: Language,
+  codeString: string
+  language: Language
   props: any
 }
 
 const Line = styled.div`
   display: table-row;
-`;
+`
 
 const LineNo = styled.span`
   display: table-cell;
@@ -19,11 +19,11 @@ const LineNo = styled.span`
   padding-right: 1rem;
   user-select: none;
   opacity: 0.5;
-`;
+`
 
 const LineContent = styled.span`
   display: table-cell;
-`;
+`
 
 const MacIcons = styled.div`
   position: relative;
@@ -31,14 +31,14 @@ const MacIcons = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: row;
-  background: #1f2d38;
+  background: #142532;
   border-radius: 6px 6px 0 0;
 
   > span {
     width: 1.4rem;
     height: 1.4rem;
     border-radius: 100%;
-    margin-right: .8rem;
+    margin-right: 0.8rem;
   }
 
   .red {
@@ -71,20 +71,19 @@ const CopyButton = (props: any) => (
       cursor: "pointer",
       fontSize: "1.4rem",
       fontFamily: "sans-serif",
-      lineHeight: "1",
+      lineHeight: "1"
     }}
     {...props}
   />
 )
 
 export const Code = ({ codeString, language, ...props }: Code) => {
-
-  const [isCopied, setIsCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false)
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(codeString);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 4000);
+    navigator.clipboard.writeText(codeString)
+    setIsCopied(true)
+    setTimeout(() => setIsCopied(false), 4000)
   }
 
   return (
@@ -120,6 +119,4 @@ export const Code = ({ codeString, language, ...props }: Code) => {
       )}
     </Highlight>
   )
-};
-
-
+}

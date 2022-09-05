@@ -1,64 +1,110 @@
-import path from "path"
-import { GatsbyNode } from "gatsby"
-import { QueryResult, Post, PostFrontMatter } from "./src/types"
+import type { GatsbyNode } from "gatsby";
+import path from "path";
 
-type Page = Pick<Post, "id"> & {
-  frontmatter: Pick<PostFrontMatter, "slug" | "status">
+export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql }) => {
+    await Promise.all([createTipPage({ graphql, actions }), createPostPage({ graphql, actions })]);
+};
+
+async function createPostPage({ graphql, actions }) {
+    const pageTemplate = path.resolve("./src/templates/post.tsx");
+
+    const result = await graphql(`
+        query posts {
+            allMdx(
+                sort: { fields: frontmatter___date, order: DESC }
+                filter: { frontmatter: { published: { eq: true } } }
+            ) {
+                nodes {
+                    id
+                    frontmatter {
+                        slug
+                    }
+                    internal {
+                        contentFilePath
+                    }
+                }
+            }
+        }
+    `);
+
+    if (result.errors) {
+        throw new Error(result.errors);
+    }
+
+    // Create paginated pages for posts
+    const postPerPage = Number(process.env.GATSBY_PAGE_SIZE);
+    const numPages = Math.ceil(result.data.allMdx.nodes.length / postPerPage);
+    for (let index = 1; index <= numPages; index++) {
+        actions.createPage({
+            path: index === 0 ? "/blog/" : `/blog/${index + 1}`,
+            component: path.resolve(`./src/pages/blog.tsx`),
+            context: {
+                limit: postPerPage,
+                skip: index * postPerPage,
+                numPages,
+                currentPage: index + 1
+            }
+        });
+    }
+
+    // Create single blog post
+    const posts = result.data.allMdx.nodes;
+    posts.forEach((node, index: number) => {
+        const slug: string = node.frontmatter.slug;
+        const id: string = node.id;
+        if (slug) {
+            actions.createPage({
+                path: `/blog/${slug}`,
+                component: `${pageTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+                context: {
+                    id,
+                    prev: index === 0 ? null : posts[index - 1].node,
+                    next: index === posts.length - 1 ? null : posts[index + 1].node
+                }
+            });
+        }
+    });
 }
 
-export const createPages: GatsbyNode["createPages"] = async ({
-  actions,
-  graphql
-}) => {
-  const { createPage } = actions
-
-  const result = await graphql<QueryResult<Page>>(`
-    query {
-      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
-        edges {
-          node {
-            frontmatter {
-              slug
+async function createTipPage({ graphql, actions }) {
+    const tipTemplate = path.resolve("./src/templates/tip.tsx");
+    const { errors, data } = await graphql(`
+        query tips {
+            allMdx(
+                filter: { internal: { contentFilePath: { regex: "//tips//" } } }
+                sort: { fields: [frontmatter___date], order: DESC }
+            ) {
+                nodes {
+                    frontmatter {
+                        slug
+                    }
+                    internal {
+                        contentFilePath
+                    }
+                    id
+                }
             }
-            id
-          }
         }
-      }
+    `);
+
+    if (errors) {
+        console.error(errors);
+        throw new Error("There was an error");
     }
-  `)
 
-  if (result.errors) {
-    throw new Error(result.errors)
-  }
+    const tips = data.allMdx.nodes;
 
-  // Create paginated pages for posts
-  const postPerPage: number = Number(process.env.GATSBY_PAGE_SIZE)
-  const numPages = Math.ceil(result.data!.allMdx.edges.length / postPerPage)
-
-  Array.from({ length: numPages }).map((_, index: number) => {
-    createPage({
-      path: index === 0 ? "/blog/" : `/blog/${index + 1}`,
-      component: path.resolve("./src/pages/blog.tsx"),
-      context: {
-        limit: postPerPage,
-        skip: index * postPerPage,
-        numPages,
-        currentPage: index + 1
-      }
-    })
-  })
-
-  // Create single blog post
-  result.data!.allMdx.edges.map(edge => {
-    const slug: string = edge.node.frontmatter.slug
-    const id: string = edge.node.id
-
-    if (slug) {
-      createPage({
-        path: `/blog/${slug}`,
-        component: require.resolve("./src/templates/post.tsx"),
-        context: { id }
-      })
-    }
-  })
+    tips.forEach((node, index: number) => {
+        const slug = node.frontmatter.slug;
+        actions.createPage({
+            path: `/tips/${slug}`,
+            component: `${tipTemplate}`,
+            context: {
+                id: node.id,
+                slug: slug,
+                prev: index === 0 ? null : tips[index - 1].node,
+                next: index === tips.length - 1 ? null : tips[index + 1].node
+            }
+        });
+    });
 }
